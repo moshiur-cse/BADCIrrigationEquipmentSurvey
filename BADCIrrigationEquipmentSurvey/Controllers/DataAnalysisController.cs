@@ -88,7 +88,7 @@ namespace BADCIrrigationEquipmentSurvey.Controllers
                     PDBCountGroupByBADC = k.Where(i => i.AgencyInfo.NameOfAgency == "BADC" && i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "PDB").Count(),
                     REBCountGroupByBADC = k.Where(i => i.AgencyInfo.NameOfAgency == "BADC" && i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "REB").Count(),
 
-                    PDBCountGroupByOthers = k.Where(i => i.AgencyInfo.NameOfAgency != "BADC" && i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "PDB").Count(),
+                    PDBCountGroupByOthers = k.Where(i => i.AgencyInf`o.NameOfAgency != "BADC" && i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "PDB").Count(),
                     REBCountGroupByOthers = k.Where(i => i.AgencyInfo.NameOfAgency != "BADC" && i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "REB").Count(),
 
                     FarmrsCountGroupByBADSAndDieselEngines = k.Where(i => i.AgencyInfo.NameOfAgency == "BADC" && i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.BenefitedFarmerMale),
@@ -337,88 +337,39 @@ namespace BADCIrrigationEquipmentSurvey.Controllers
         }
         public ActionResult ByIrrigatedArea()
         {
+
+            return View();
+        }
+        public JsonResult _ByIrrigatedArea()
+        {
             ViewBag.Items = _dbContext.DistrictInfoes.ToList();
+            Expression<Func<SurveyInfo, string>> groupBy = model => model.UpazilaInfo.UpazCode;
 
-
-            Expression<Func<SurveyInfo, string>> groupBy = model => model.UpazilaInfo.UpazName;
+            Expression<Func<SurveyInfo, string>> adminName = i => i.UpazilaInfo.UpazName;
 
             ViewBag.Admin = "Upazila";
 
-            //ViewBag.query = _dbContext.SurveyInfoes.Where(where).
-            ViewBag.query = _dbContext.SurveyInfoes.
-                GroupBy(groupBy).Select(k => new {
-
-                    UpazName = k.Key,
-                    b = k.Select(i => i.DistrictInfo.DistName),
-                    c = k.Select(i => i.AgencyInfo.NameOfAgency),
-
-                    PDBCountGroupByBADC = k.Where(i => i.AgencyInfo.NameOfAgency == "BADC" && i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "PDB").Count(),
-                    REBCountGroupByBADC = k.Where(i => i.AgencyInfo.NameOfAgency == "BADC" && i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "REB").Count(),
-
-                    PDBCountGroupByOthers = k.Where(i => i.AgencyInfo.NameOfAgency != "BADC" && i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "PDB").Count(),
-                    REBCountGroupByOthers = k.Where(i => i.AgencyInfo.NameOfAgency != "BADC" && i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "REB").Count(),
-
-                    FarmrsCountGroupByBADSAndDieselEngines = k.Where(i => i.AgencyInfo.NameOfAgency == "BADC" && i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.BenefitedFarmerMale),
-                    FarmrsCountGroupByOthersAndDieselEngines = k.Where(i => i.AgencyInfo.NameOfAgency != "BADC" && i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.BenefitedFarmerMale),
-
-                    FarmrsCountGroupByBADSAndElectricityEngines = k.Where(i => i.AgencyInfo.NameOfAgency == "BADC" && i.ElectricMotorMakeAndModel != "" && i.ElectricMotorKw != null).Sum(i => i.BenefitedFarmerMale),
-                    FarmrsCountGroupByOthersAndElectricityEngines = k.Where(i => i.AgencyInfo.NameOfAgency != "BADC" && i.ElectricMotorMakeAndModel != "" && i.ElectricMotorKw != null).Sum(i => i.BenefitedFarmerMale),
-
-                    AreaCountGroupByBADSAndDieselEngines = k.Where(i => i.AgencyInfo.NameOfAgency == "BADC" && i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.BoroArea + i.WheatArea + i.PotatoArea + i.MaizeArea + i.VegWinterArea + i.MustardArea + i.OthersArea),
-                    AreaCountGroupByOthersAndDieselEngines = k.Where(i => i.AgencyInfo.NameOfAgency != "BADC" && i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.BoroArea + i.WheatArea + i.PotatoArea + i.MaizeArea + i.VegWinterArea + i.MustardArea + i.OthersArea),
-
-                    AreaCountGroupByBADSAndElectricityEngines = k.Where(i => i.AgencyInfo.NameOfAgency == "BADC" && i.ElectricMotorMakeAndModel != "" && i.ElectricMotorKw != null).Sum(i => i.BoroArea + i.WheatArea + i.PotatoArea + i.MaizeArea + i.VegWinterArea + i.MustardArea + i.OthersArea),
-                    AreaCountGroupByOthersAndElectricityEngines = k.Where(i => i.AgencyInfo.NameOfAgency != "BADC" && i.ElectricMotorMakeAndModel != "" && i.ElectricMotorKw != null).Sum(i => i.BoroArea + i.WheatArea + i.PotatoArea + i.MaizeArea + i.VegWinterArea + i.MustardArea + i.OthersArea),
-
-                    UnitCountGroupByBADSAndDieselEngines = k.Where(i => i.AgencyInfo.NameOfAgency == "BADC" && i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Count(),
-                    UnitCountGroupByOthersAndDieselEngines = k.Where(i => i.AgencyInfo.NameOfAgency != "BADC" && i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Count()
-
+            //ViewBag.query = _dbContext.LowLiftPumpSurveyInfoes.Where(where).
+            var query = _dbContext.SurveyInfoes.
+                GroupBy(groupBy).Select(k => new
+                {
+                    UpazCode = k.Key,
+                    UpazName = k.Select(i => i.UpazilaInfo.UpazName).First(),
+                    item = k.GroupBy(i => i.AgencyInfo.NameOfAgency).Select(L => new
+                    {
+                        NameOfAgency = L.Key,
+                        PDBCount = k.Where(i => i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "PDB").Count(),
+                        REBCount = k.Where(i => i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "REB").Count()
+                    }).ToList()
                 }).ToList();
 
-
-
-            List<ReportViewModel> aList = new List<ReportViewModel>();
-
-            ReportViewModel aReportViewModel;
-
-            for (int r = 0; r < ViewBag.query.Count; r++)
-            {
-                aReportViewModel = new ReportViewModel();
-
-
-                aReportViewModel.Upazila = ViewBag.query[r].UpazName.ToString();
-
-                aReportViewModel.PDBCountGroupByBADC = Convert.ToDouble(ViewBag.query[r].PDBCountGroupByBADC);
-                aReportViewModel.REBCountGroupByBADC = Convert.ToDouble(ViewBag.query[r].REBCountGroupByBADC);
-
-                aReportViewModel.PDBCountGroupByOthers = Convert.ToDouble(ViewBag.query[r].PDBCountGroupByOthers);
-                aReportViewModel.REBCountGroupByOthers = Convert.ToDouble(ViewBag.query[r].REBCountGroupByOthers);
-
-                aReportViewModel.FarmrsCountGroupByBADSAndDieselEngines = Convert.ToDouble(ViewBag.query[r].FarmrsCountGroupByBADSAndDieselEngines);
-                aReportViewModel.FarmrsCountGroupByOthersAndDieselEngines = Convert.ToDouble(ViewBag.query[r].FarmrsCountGroupByOthersAndDieselEngines);
-
-                aReportViewModel.FarmrsCountGroupByBADSAndElectricityEngines = Convert.ToDouble(ViewBag.query[r].FarmrsCountGroupByBADSAndElectricityEngines);
-                aReportViewModel.FarmrsCountGroupByOthersAndElectricityEngines = Convert.ToDouble(ViewBag.query[r].FarmrsCountGroupByOthersAndElectricityEngines);
-
-
-                aReportViewModel.AreaCountGroupByBADSAndDieselEngines = Convert.ToDouble(ViewBag.query[r].AreaCountGroupByBADSAndDieselEngines);
-                aReportViewModel.AreaCountGroupByOthersAndDieselEngines = Convert.ToDouble(ViewBag.query[r].AreaCountGroupByOthersAndDieselEngines);
-
-                aReportViewModel.AreaCountGroupByBADSAndElectricityEngines = Convert.ToDouble(ViewBag.query[r].AreaCountGroupByBADSAndElectricityEngines);
-                aReportViewModel.AreaCountGroupByOthersAndElectricityEngines = Convert.ToDouble(ViewBag.query[r].AreaCountGroupByOthersAndElectricityEngines);
-
-                aReportViewModel.UnitCountGroupByBADSAndDieselEngines = Convert.ToDouble(ViewBag.query[r].UnitCountGroupByBADSAndDieselEngines);
-                aReportViewModel.UnitCountGroupByOthersAndDieselEngines = Convert.ToDouble(ViewBag.query[r].UnitCountGroupByOthersAndDieselEngines);
-
-                aList.Add(aReportViewModel);
-            }
-            return View();
+            return Json(query);
         }
         public ActionResult ByIrrigatedCost()
         {
             return View();
         }
-        public ActionResult ByBenefitedFarmerMale()
+        public ActionResult ByBenefitedFarmer()
         {
             return View();
         }
