@@ -1,0 +1,31 @@
+﻿@model BADCIrrigationEquipmentSurvey.Models.DataModels.CropInfo
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h4>Crop Details</h4>
+    <hr />
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SeasonInfo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SeasonInfo.SeasonName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CropName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CropName)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CropId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

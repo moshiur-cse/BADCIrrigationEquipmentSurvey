@@ -1,0 +1,160 @@
+﻿@model BADCIrrigationEquipmentSurvey.Models.DataModels.OtherSurveyInfo
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>OtherSurveyInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EquipmentInfo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EquipmentInfo.NameOfEquipment)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DistrictInfo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DistrictInfo.DistCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UpazilaInfo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UpazilaInfo.UpazCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SurveyDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SurveyDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RobiBoroArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RobiBoroArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RobiWheatArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RobiWheatArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RobiPotatoArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RobiPotatoArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RobiMaizeArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RobiMaizeArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RobiVegWinterArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RobiVegWinterArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RobiMustardArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RobiMustardArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RobiOthersArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RobiOthersArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RobiBenefitedFarmerMale)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RobiBenefitedFarmerMale)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RobiBenefitedAgricultureLabourMale)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RobiBenefitedAgricultureLabourMale)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Kharif1AusArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Kharif1AusArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Kharif1JuteArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Kharif1JuteArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Kharif1VegSummerArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Kharif1VegSummerArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Kharif1OthersArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Kharif1OthersArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Kharif1BenefitedFarmerMale)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Kharif1BenefitedFarmerMale)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Kharif1BenefitedAgricultureLabourMale)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Kharif1BenefitedAgricultureLabourMale)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Kharif2TAmanArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Kharif2TAmanArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Kharif2OthersArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Kharif2OthersArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Kharif2BenefitedFarmerMale)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Kharif2BenefitedFarmerMale)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Kharif2BenefitedAgricultureLabourMale)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Kharif2BenefitedAgricultureLabourMale)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="OtherSurveyId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

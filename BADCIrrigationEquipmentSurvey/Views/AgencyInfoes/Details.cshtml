@@ -1,0 +1,25 @@
+﻿@model BADCIrrigationEquipmentSurvey.Models.DataModels.AgencyInfo
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AgencyInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfAgency)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameOfAgency)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Code">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

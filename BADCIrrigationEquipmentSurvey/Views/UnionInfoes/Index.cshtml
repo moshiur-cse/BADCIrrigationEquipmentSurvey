@@ -1,0 +1,65 @@
+﻿@model IEnumerable<BADCIrrigationEquipmentSurvey.Models.DataModels.UnionInfo>
+
+@{
+    ViewData["Title"] = "Union Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DistCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DistrictInfo.DistName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpazCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpazilaInfo.UpazName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnionCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnionName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DistCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DistrictInfo.DistName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpazCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpazilaInfo.UpazName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnionCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnionName)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.UnionCode">Details</a>
+                    @*<a asp-action="Edit" asp-route-id="@item.UnionCode">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.UnionCode">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.UnionCode">Delete</a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

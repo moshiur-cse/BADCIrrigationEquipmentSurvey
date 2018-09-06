@@ -1,0 +1,30 @@
+﻿@model BADCIrrigationEquipmentSurvey.Models.DataModels.EquipmentInfo
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h4>Irrigation Equipment Details</h4>
+    <hr />
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EquipmentTypeId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EquipmentTypeInfo.EquipmentType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfEquipment)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameOfEquipment)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.EquipmentId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

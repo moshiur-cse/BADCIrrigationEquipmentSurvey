@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BADCIrrigationEquipmentSurvey.Models.DataModels.EquipmentTypeInfo>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Irrigation Equipment Types</h2>
+
+<p>
+    <a asp-action="Create">Add New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EquipmentTypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EquipmentType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EquipmentTypeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EquipmentType)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EquipmentTypeId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.EquipmentTypeId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.EquipmentTypeId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

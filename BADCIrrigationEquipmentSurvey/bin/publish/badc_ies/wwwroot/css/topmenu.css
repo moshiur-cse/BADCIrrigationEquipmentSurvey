@@ -1,0 +1,234 @@
+﻿.top-menu {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: auto;
+    color: #234;
+    font: 400 10.5pt/1.42857 Roboto, Noto Sans, Verdana, Helvetica, Arial, sans-serif;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+    .top-menu li,
+    .top-menu > li,
+    .top-menu > ul > li,
+    .top-menu > li > ul > li,
+    .top-menu > li > ul > li > ul > li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+        .top-menu > li > a {
+            padding: 12px 20px;
+            color: #234;
+            font: 400 10.5pt/1.42857 Roboto, Noto Sans, Verdana, Helvetica, Arial, sans-serif;
+            cursor: pointer;
+            background-color: transparent;
+            /*background-color: rgba(0, 125, 215, 0.13);*/
+        }
+
+
+            .top-menu > li > a:hover,
+            .top-menu > li > a:focus,
+            .top-menu > li > a:active,
+            .top-menu ul:hover + a {
+                color: #fff;
+                text-decoration: none;
+                background-color: #08c;
+                background-color: #0083c5;
+                background-image: -moz-linear-gradient(top,#08c,#0077b3);
+                background-image: -webkit-gradient(linear,0 0,0 100%,from(#08c),to(#0077b3));
+                background-image: -webkit-linear-gradient(top,#08c,#0077b3);
+                background-image: -o-linear-gradient(top,#08c,#0077b3);
+                background-image: linear-gradient(to bottom,#08c,#0077b3);
+                background-repeat: repeat-x;
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc',endColorstr='#ff0077b3',GradientType=0);
+            }
+
+            .top-menu > li > a > .caret-down,
+            .top-menu > li > a > .fa-caret-down {
+                margin: auto -3px auto 2px;
+                text-decoration: none;
+                transition-duration: 500ms;
+                transition-property: transform;
+            }
+
+                .top-menu > li > a > .caret-down::before,
+                .top-menu > li > a > .fa-caret-down::before {
+                    content: "\f107";
+                }
+
+        .top-menu > li.open > a > .caret-down,
+        .top-menu > li.open > a > .fa-caret-down {
+            transform: rotate(-180deg);
+            -webkit-transform: rotate(-180deg);
+        }
+
+
+        .top-menu > li > ul {
+            left: 0;
+            min-width: 175px;
+            margin: 0;
+            padding: 8px;
+            list-style: none;
+        }
+
+            .top-menu > li > ul > li > ul,
+            .dropdown-submenu > .dropdown-menu {
+                top: 0;
+                left: 100%;
+                min-width: 175px;
+                margin: 0;
+                padding: 8px;
+                list-style: none;
+                border-top-left-radius: 0;
+            }
+
+.dropdown-submenu > a > .caret,
+.dropdown-submenu > a > .caret-down {
+    float: right;
+    position: relative;
+    right: -6px;
+    top: 3px;
+    text-decoration: none;
+    transition-duration: 500ms;
+    transition-property: transform;
+}
+
+    .dropdown-submenu > a > .caret::before,
+    .dropdown-submenu > a > .caret-down::before {
+        content: "\f107";
+    }
+
+.top-menu .open > a,
+.top-menu li.open > a,
+.top-menu > .open > a,
+.top-menu > .open > a:hover,
+.top-menu > .open > a:focus,
+.top-menu > .open > a:active,
+.navbar-nav > li.open > a,
+.navbar-nav > .open > a,
+.navbar-nav > .open > a:hover,
+.navbar-nav > .open > a:focus,
+.navbar-nav > .open > a:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #07b;
+    cursor: pointer;
+}
+
+.dropdown-menu > li > a,
+.top-menu ul > li > a,
+.top-menu > li > ul > li > a,
+.top-menu > li > ul > li > ul > li > a {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    padding: 8px 10px;
+    color: #234;
+    font: 400 10.25pt/1.42857 Roboto, Noto Sans, Verdana, Helvetica, Arial, sans-serif;
+    cursor: pointer;
+    background-color: transparent;
+    -webkit-transition: padding-left 150ms ease-out, background 150ms ease-out;
+    -moz-transition: padding-left 150ms ease-out, background 150ms ease-out;
+    -ms-transition: padding-left 150ms ease-out, background 150ms ease-out;
+    -o-transition: padding-left 150ms ease-out, background 150ms ease-out;
+    transition: padding-left 150ms ease-out, background 150ms ease-out;
+}
+
+    .top-menu ul > li > a:hover,
+    .top-menu > li > ul > li > a:hover,
+    .top-menu > li > ul > li > a:focus,
+    .top-menu > li > ul > li > a:active,
+    .top-menu > .open .dropdown-menu > li > a:hover,
+    .top-menu > .open .dropdown-menu > li > a:focus,
+    .top-menu > .open .dropdown-menu > li > a:active,
+    .top-menu ul ul:hover + a {
+        border-bottom-color: #08c;
+        padding-left: 15px;
+        text-decoration: none;
+        color: #fff;
+        background-color: #0083c5;
+        background-image: -moz-linear-gradient(top,#08c,#0077b3);
+        background-image: -webkit-gradient(linear,0 0,0 100%,from(#08c),to(#0077b3));
+        background-image: -webkit-linear-gradient(top,#08c,#0077b3);
+        background-image: -o-linear-gradient(top,#08c,#0077b3);
+        background-image: linear-gradient(to bottom,#08c,#0077b3);
+        background-repeat: repeat-x;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc',endColorstr='#ff0077b3',GradientType=0);
+    }
+
+
+@media (min-width: 768px) {
+    .top-menu > li > a:hover > .caret-down,
+    .top-menu > li > a:hover > .fa-caret-down,
+    .top-menu ul:hover + a > .caret-down,
+    .top-menu ul:hover + a > .fa-caret-down {
+        transform: rotate(-180deg);
+        -webkit-transform: rotate(-180deg);
+    }
+
+    .top-menu > li:hover > ul {
+        display: block;
+        z-index: 1003;
+    }
+
+    .top-menu > li > ul > li:hover > ul,
+    .dropdown-submenu:hover > .dropdown-menu {
+        display: block;
+        z-index: 1005;
+    }
+
+    .dropdown-submenu > a:hover > .caret,
+    .dropdown-submenu.open > a > .caret,
+    .dropdown-submenu > a:hover > .caret-down,
+    .dropdown-submenu.open > a > .caret-down,
+    .dropdown-submenu ul:hover + a > .caret,
+    .dropdown-submenu ul:hover + a > .caret-down {
+        transform: rotate(-90deg);
+        -webkit-transform: rotate(-90deg);
+        transform: rotate(270deg);
+        -webkit-transform: rotate(270deg);
+    }
+}
+
+
+
+@-webkit-keyframes animatedDown {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-25px);
+        transform: translateY(-25px);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+@keyframes animatedDown {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-25px);
+        -ms-transform: translateY(-25px);
+        transform: translateY(-25px);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+.animated-down {
+    -webkit-animation-duration: 350ms;
+    animation-duration: 350ms;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: animatedDown;
+    animation-name: animatedDown;
+}
+

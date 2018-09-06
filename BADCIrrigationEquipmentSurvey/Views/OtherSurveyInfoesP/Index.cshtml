@@ -1,0 +1,169 @@
+﻿@model IEnumerable<BADCIrrigationEquipmentSurvey.Models.DataModels.OtherSurveyInfo>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EquipmentInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DistrictInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpazilaInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SurveyDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RobiBoroArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RobiWheatArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RobiPotatoArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RobiMaizeArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RobiVegWinterArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RobiMustardArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RobiOthersArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RobiBenefitedFarmerMale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RobiBenefitedAgricultureLabourMale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kharif1AusArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kharif1JuteArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kharif1VegSummerArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kharif1OthersArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kharif1BenefitedFarmerMale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kharif1BenefitedAgricultureLabourMale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kharif2TAmanArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kharif2OthersArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kharif2BenefitedFarmerMale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kharif2BenefitedAgricultureLabourMale)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EquipmentInfo.NameOfEquipment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DistrictInfo.DistCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpazilaInfo.UpazCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SurveyDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RobiBoroArea)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RobiWheatArea)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RobiPotatoArea)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RobiMaizeArea)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RobiVegWinterArea)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RobiMustardArea)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RobiOthersArea)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RobiBenefitedFarmerMale)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RobiBenefitedAgricultureLabourMale)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kharif1AusArea)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kharif1JuteArea)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kharif1VegSummerArea)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kharif1OthersArea)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kharif1BenefitedFarmerMale)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kharif1BenefitedAgricultureLabourMale)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kharif2TAmanArea)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kharif2OthersArea)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kharif2BenefitedFarmerMale)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kharif2BenefitedAgricultureLabourMale)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.OtherSurveyId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.OtherSurveyId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.OtherSurveyId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

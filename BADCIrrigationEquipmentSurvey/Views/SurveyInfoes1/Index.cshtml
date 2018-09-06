@@ -1,0 +1,300 @@
+﻿@model IEnumerable<BADCIrrigationEquipmentSurvey.Models.DataModels.SurveyInfo>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EquipmentInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DistrictInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpazilaInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnionInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MauzaName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JlNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlotNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SurveyDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NameOfScheme)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OwnerOrManagerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OwnerOrManagerMobileNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AgencyInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DieselEngineMakeAndModel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DieselEngineHp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ElectricMotorMakeAndModel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ElectricMotorKw)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ElectricMotorPowerSourceInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PumpCapacityInCusec)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SurfaceWaterSourceInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SmartCard)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsPit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsServiceable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalOperatingHour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BoroArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WheatArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PotatoArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaizeArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VegWinterArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MustardArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OthersArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BoroCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WheatCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PotatoCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaizeCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VegWinterCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OthersCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CanalLengthPacca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CanalLengthBuriedPipe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CanalLengthFitaPipe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CanalLengthKacha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BenefitedFarmerMale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BenefitedAgricultureLabourMale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UseInKharif1Season)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EntryDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EntryUserId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EquipmentInfo.NameOfEquipment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DistrictInfo.DistCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpazilaInfo.UpazCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnionInfo.UnionCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MauzaName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JlNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlotNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SurveyDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameOfScheme)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OwnerOrManagerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OwnerOrManagerMobileNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgencyInfo.NameOfAgency)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DieselEngineMakeAndModel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DieselEngineHp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ElectricMotorMakeAndModel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ElectricMotorKw)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PumpCapacityInCusec)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SurfaceWaterSourceInfo.SourceOfSurfaceWater)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SmartCard)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsPit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsServiceable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalOperatingHour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BoroArea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WheatArea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PotatoArea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaizeArea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VegWinterArea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MustardArea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OthersArea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BoroCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WheatCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PotatoCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaizeCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VegWinterCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OthersCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CanalLengthPacca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CanalLengthBuriedPipe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CanalLengthFitaPipe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CanalLengthKacha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BenefitedFarmerMale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BenefitedAgricultureLabourMale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UseInKharif1Season)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EntryDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EntryUserId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SurveyId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SurveyId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SurveyId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

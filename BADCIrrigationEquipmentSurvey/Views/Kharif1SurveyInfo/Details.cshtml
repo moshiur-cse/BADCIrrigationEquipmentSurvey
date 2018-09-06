@@ -1,0 +1,91 @@
+﻿@model BADCIrrigationEquipmentSurvey.Models.DataModels.Kharif1SurveyInfo
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Kharif1SurveyInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalOperatingHour)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalOperatingHour)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AusArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AusArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.JuteArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.JuteArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.VegArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.VegArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OthersArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OthersArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AusCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AusCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.JuteCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.JuteCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.VegCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.VegCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OthersCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OthersCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BenefitedFarmerMale)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BenefitedFarmerMale)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BenefitedAgricultureLabourMale)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BenefitedAgricultureLabourMale)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UseInKharif2Season)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UseInKharif2Season)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SurveyKharif1Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

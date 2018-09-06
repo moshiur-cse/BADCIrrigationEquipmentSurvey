@@ -1,0 +1,271 @@
+﻿@model BADCIrrigationEquipmentSurvey.Models.DataModels.SurveyInfo
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Low Lift Pump Info</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.JlNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.JlNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PlotNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PlotNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SurveyDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SurveyDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfScheme)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameOfScheme)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OwnerOrManagerName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OwnerOrManagerName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OwnerOrManagerMobileNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OwnerOrManagerMobileNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DieselEngineMakeAndModel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DieselEngineMakeAndModel)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DieselEngineHp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DieselEngineHp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ElectricMotorMakeAndModel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ElectricMotorMakeAndModel)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ElectricMotorKw)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ElectricMotorKw)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PumpCapacityInCusec)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PumpCapacityInCusec)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalOperatingHour)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalOperatingHour)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BoroArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BoroArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WheatArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WheatArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PotatoArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PotatoArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaizeArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaizeArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.VegWinterArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.VegWinterArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MustardArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MustardArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OthersArea)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OthersArea)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BoroCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BoroCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WheatCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WheatCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PotatoCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PotatoCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaizeCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaizeCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.VegWinterCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.VegWinterCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OthersCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OthersCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CanalLengthPacca)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CanalLengthPacca)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CanalLengthBuriedPipe)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CanalLengthBuriedPipe)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CanalLengthFitaPipe)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CanalLengthFitaPipe)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CanalLengthKacha)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CanalLengthKacha)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BenefitedFarmerMale)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BenefitedFarmerMale)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BenefitedAgricultureLabourMale)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BenefitedAgricultureLabourMale)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsServiceable)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsServiceable)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UseInKharif1Season)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UseInKharif1Season)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EntryDateTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EntryDateTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EntryUserId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EntryUserId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AgencyInfo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AgencyInfo.NameOfAgency)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DistrictInfo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DistrictInfo.DistCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ElectricMotorPowerSourceInfo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MauzaName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MauzaName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SurfaceWaterSourceInfo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SurfaceWaterSourceInfo.SourceOfSurfaceWater)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UnionInfo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UnionInfo.UnionCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UpazilaInfo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UpazilaInfo.UpazCode)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SurveyId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

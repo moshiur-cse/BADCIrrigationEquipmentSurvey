@@ -1,0 +1,311 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>BADC :: @ViewData["Title"]</title>
+    @*Irrigation Equipment Survey & Monitoring Tool -*@
+
+    <link rel="shortcut icon" type="image/x-icon" href="~/images/badc_logo.ico">
+    <link rel="icon" type="image/ico" href="~/images/badc_logo.ico" />
+    <link rel="apple-touch-icon" href="~/images/badc_logo.ico">
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/jquery-ui/jquery-ui.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/topmenu.css" />
+        <link rel="stylesheet" href="~/css/msgstyle.css" />
+
+        <link rel="stylesheet" href="~/css/fontawesome.css" />
+    </environment>
+
+    <environment exclude="Development">
+        @*<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+                  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+                  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+
+            <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />*@
+
+        <link rel="stylesheet" href="~/lib/jquery-ui/jquery-ui.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/topmenu.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/msgstyle.css" asp-append-version="true" />
+
+        <link rel="stylesheet" href="~/css/fontawesome.css" asp-append-version="true" />
+    </environment>
+
+    @RenderSection("Styles", required: false)
+
+</head>
+
+
+<body>
+
+    <nav id="header-content" class="navbar navbar-fixed-top header-content">
+        <div class="container">
+
+            <div class="header-banner">
+                <img class="logo" src="~/images/badc_logo.png" />
+                <samp class="title-txt">
+                    <span class="title">Bangladesh Agricultural Development Corporation (BADC)</span>
+                    <span class="sub-title">Irrigation Equipment Survey & Monitoring Tool</span>
+                </samp>
+            </div>
+
+            <div class="logo-collapse">
+                <img class="logo-sm" style="height: 0; margin: 0;" src="~/Images/badc_logo.png" />
+                <div class="sub-title" style="display: none; margin-left: 110px;">BADC Irrigation Equipment Survey & Monitoring Tool</div>
+            </div>
+
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*<a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">BADC Irrigation Equipment Survey</a>*@
+            </div>
+
+            <div class="navbar-collapse collapse">
+
+                <div style="display: none; margin-left: 110px;" class="sub-title">BADC Irrigation Equipment Survey & Monitoring Tool</div>
+
+                <ul class="nav navbar-nav top-menu">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            Data Entry <i class="fas fa-caret-down"></i><i class="sr-only caret"></i>
+                        </a>
+                        <ul class="dropdown-menu animated-down">
+                            <li><a asp-area="" asp-controller="LowLiftPumpInfoes" asp-action="Add">Low Lift Pump</a></li>
+                            <li><a asp-area="" asp-controller="DeepTubewellInfoes" asp-action="Add">Deep Tubewell</a></li>
+                            <li><a asp-area="" asp-controller="ShallowTubewellInfoes" asp-action="Add">Shallow Tubewell</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            Data Viewer <i class="fas fa-caret-down"></i><i class="sr-only caret"></i>
+                        </a>
+                        <ul class="dropdown-menu animated-down">
+                            <li><a asp-area="" asp-controller="Home" asp-action="DataMap">Map View</a></li>
+
+                            <li class="dropdown dropdown-submenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Data View <i class="fas fa-caret-down caret-down"></i><i class="sr-only caret"></i>
+                                </a>
+                                <ul class="dropdown-menu animated-down">
+                                    <li><a asp-area="" asp-controller="LowLiftPumpInfoes" asp-action="Index">Low Lift Pump</a></li>
+                                    <li><a asp-area="" asp-controller="DeepTubewellInfoes" asp-action="Index">Deep Tubewell</a></li>
+                                    <li><a asp-area="" asp-controller="ShallowTubewellInfoes" asp-action="Index">Shallow Tubewell</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            Data Analysis & Reporting <i class="fas fa-caret-down"></i><i class="sr-only caret"></i>
+                        </a>
+
+                        <ul class="dropdown-menu animated-down">
+                            @*<li><a asp-area="" asp-controller="LowLiftPumpInfoes" asp-action="DivisionWiseIrrigationReports">Division Wise Irrigation Reports</a></li>*@
+                            <li><a asp-area="" asp-controller="LowLiftPumpInfoes" asp-action="DistrictWiseIrrigationReports">District Wise Irrigation Reports</a></li>
+                            <li><a asp-area="" asp-controller="LowLiftPumpInfoes" asp-action="UpazilaWiseIrrigationReports">Upazila Wise Irrigation Reports</a></li>
+                            <li><a asp-area="" asp-controller="LowLiftPumpInfoes" asp-action="Chart">Chart View</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fas fa-caret-down"></i>
+                            Export Tools
+                            <i class="sr-only caret"></i>
+                        </a>
+
+                        <ul class="dropdown-menu animated-down">
+                            <li class="dropdown dropdown-submenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fas fa-caret-down caret-down"></i>
+                                    Data Export
+                                    <i class="sr-only caret"></i>
+                                </a>
+
+                                <ul class="dropdown-menu animated-down">
+                                    <li><a asp-area="" asp-controller="DivisionInfoes" asp-action="Index">Division Info</a></li>
+                                    <li><a asp-area="" asp-controller="DistrictInfoes" asp-action="Index">District Info</a></li>
+                                    <li><a asp-area="" asp-controller="UpazilaInfoes" asp-action="Index">Upazila Info</a></li>
+                                    <li><a asp-area="" asp-controller="UnionInfoes" asp-action="Index">Union Info</a></li>
+                                    <li><a asp-area="" asp-controller="MauzaInfoes" asp-action="Index">Mauza Info</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown dropdown-submenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fas fa-caret-down caret-down"></i>
+                                    Data Map
+                                    <i class="sr-only caret"></i>
+                                </a>
+                                <ul class="dropdown-menu animated-down">
+                                    <li><a asp-area="" asp-controller="DivisionInfoes" asp-action="Index">Division Info</a></li>
+                                    <li><a asp-area="" asp-controller="DistrictInfoes" asp-action="Index">District Info</a></li>
+                                    <li><a asp-area="" asp-controller="UpazilaInfoes" asp-action="Index">Upazila Info</a></li>
+                                    <li><a asp-area="" asp-controller="UnionInfoes" asp-action="Index">Union Info</a></li>
+                                    <li><a asp-area="" asp-controller="MauzaInfoes" asp-action="Index">Mauza Info</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Admin Panel <i class="fas fa-caret-down"></i><i class="sr-only caret"></i>
+                        </a>
+
+                        <ul class="dropdown-menu animated-down">
+                            <li class="dropdown dropdown-submenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Basic Info <i class="fas fa-caret-down caret-down"></i><i class="sr-only caret"></i>
+                                </a>
+
+                                <ul class="dropdown-menu animated-down">
+                                    <li><a asp-area="" asp-controller="EquipmentInfoes" asp-action="Index">Equipments</a></li>
+                                    <li><a asp-area="" asp-controller="EquipmentTypeInfoes" asp-action="Index">Equipment Types</a></li>
+
+                                    <li><a asp-area="" asp-controller="SeasonInfoes" asp-action="Index">Seasons</a></li>
+                                    <li><a asp-area="" asp-controller="CropInfoes" asp-action="Index">Crops</a></li>
+
+                                    @*<li><a asp-area="" asp-controller="SurveyTypeInfoes" asp-action="Index">Survey Types</a></li>*@
+
+
+                                    <li><a asp-area="" asp-controller="AgencyInfoes" asp-action="Index">Agencies</a></li>
+                                    <li><a asp-area="" asp-controller="MotorPowerSourceInfoes" asp-action="Index">Source of Power</a></li>
+                                    <li><a asp-area="" asp-controller="SurfaceWaterSourceInfoes" asp-action="Index">Source of Surface Water</a></li>
+
+                                    <li><a asp-area="" asp-controller="UserInfoes" asp-action="Index">User Info</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown dropdown-submenu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Admin Boundary <i class="fas fa-caret-down caret-down"></i><i class="sr-only caret"></i>
+                                </a>
+
+                                <ul class="dropdown-menu animated-down">
+                                    <li><a asp-area="" asp-controller="DivisionInfoes" asp-action="Index">Division Info</a></li>
+                                    <li><a asp-area="" asp-controller="DistrictInfoes" asp-action="Index">District Info</a></li>
+                                    <li><a asp-area="" asp-controller="UpazilaInfoes" asp-action="Index">Upazila Info</a></li>
+                                    <li><a asp-area="" asp-controller="UnionInfoes" asp-action="Index">Union Info</a></li>
+                                    <li><a asp-area="" asp-controller="MauzaInfoes" asp-action="Index">Mauza Info</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+
+                </ul>
+
+                <partial name="_LoginPartial" />
+            </div>
+        </div>
+    </nav>
+
+    <partial name="_CookieConsentPartial" />
+
+    <div class="container body-content">
+
+        @RenderBody()
+
+        <div id="msg-modal-bg" class="msg-modal-bg" onclick="msg.closeBg();">
+            <div id="msg-content" class="msg-content">
+                <div id="msg-title" class="msg-title">
+                    <button id="msg-title-btn" class="msg-btnclose" onclick="msg.close();"></button>
+                    <div id="msg-title-txt" class="msg-title-txt"></div>
+                </div>
+                <div id="msg-body" class="msg-body">
+                    <div id="msg-body-bg" class="msg-body-bg">
+                        <span id="msg-body-msg" class="msg-body-msg"></span>
+                    </div>
+                </div>
+                <div id="msg-footer" class="msg-footer">
+                    <button id="msg-footer-btn" class="modal-btns msg-btn" onclick="msg.close();">OK</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal-bg" class="modal-bg">
+            <div id="modal-content" class="modal-content" style="width: 540px; margin: 100px auto 10px auto;">
+                <div id="modal-title" class="modal-title">
+                    <span id="modal-title-txt" class="modal-title-txt">▣ Set Options</span>
+                    <button id="modal-title-btn-close" class="close" onclick="modal.close();">✖</button>
+                </div>
+                <div id="modal-body" class="modal-body">
+                    <div id="modal-body-content" class="modal-body-content">
+                    </div>
+                </div>
+                <div id="modal-footer" class="modal-footer" style="text-align: center;">
+                    <button id="btnSet" class="my-btns">Set</button>
+                    <button id="modal-footer-btn-close" class="my-btns" onclick="modal.close();">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="busy-indicator" class="pageloading">
+        <div class="pageloading-body">
+            <div class="loading-indicator">
+                <p>Please wait ... . . </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer-content">
+        <footer>
+            <p style="float: left;">BADC &copy; 2018 <strong style="letter-spacing:2px;">::</strong> Bangladesh Agricultural Development Corporation (BADC)</p>
+            <p style="float: right;">Developed by <strong style="letter-spacing:2px;">::</strong> Center for Environmental and Geographic Information Services (CEGIS)</p>
+            <div style="clear: both;"></div>
+        </footer>
+    </div>
+
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/jquery-ui/jquery-ui.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/topmenu.js" asp-append-version="true"></script>
+    </environment>
+
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+
+        @*<script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>*@
+        <script src="~/lib/jquery-ui/jquery-ui.js" asp-append-version="true"></script>
+        @*<script src="~/lib/bootstrap/dist/js/bootstrap.js" asp-append-version="true"></script>*@
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/topmenu.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

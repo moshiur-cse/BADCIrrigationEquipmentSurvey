@@ -1,0 +1,49 @@
+﻿@model BADCIrrigationEquipmentSurvey.Models.DataModels.MauzaInfo
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MauzaInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MauzaName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MauzaName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MauzaJlNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MauzaJlNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DistrictInfo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DistrictInfo.DistCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UnionInfo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UnionInfo.UnionCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UpazilaInfo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UpazilaInfo.UpazCode)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MauzaCode">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

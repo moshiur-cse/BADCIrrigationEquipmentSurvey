@@ -1,0 +1,145 @@
+﻿@model BADCIrrigationEquipmentSurvey.Models.DataModels.OtherSurveyInfo
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<h4>OtherSurveyInfo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="OtherSurveyId" />
+            <div class="form-group">
+                <label asp-for="EquipmentId" class="control-label"></label>
+                <select asp-for="EquipmentId" class="form-control" asp-items="ViewBag.EquipmentId"></select>
+                <span asp-validation-for="EquipmentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DistCode" class="control-label"></label>
+                <select asp-for="DistCode" class="form-control" asp-items="ViewBag.DistCode"></select>
+                <span asp-validation-for="DistCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpazCode" class="control-label"></label>
+                <select asp-for="UpazCode" class="form-control" asp-items="ViewBag.UpazCode"></select>
+                <span asp-validation-for="UpazCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SurveyDate" class="control-label"></label>
+                <input asp-for="SurveyDate" class="form-control" />
+                <span asp-validation-for="SurveyDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RobiBoroArea" class="control-label"></label>
+                <input asp-for="RobiBoroArea" class="form-control" />
+                <span asp-validation-for="RobiBoroArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RobiWheatArea" class="control-label"></label>
+                <input asp-for="RobiWheatArea" class="form-control" />
+                <span asp-validation-for="RobiWheatArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RobiPotatoArea" class="control-label"></label>
+                <input asp-for="RobiPotatoArea" class="form-control" />
+                <span asp-validation-for="RobiPotatoArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RobiMaizeArea" class="control-label"></label>
+                <input asp-for="RobiMaizeArea" class="form-control" />
+                <span asp-validation-for="RobiMaizeArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RobiVegWinterArea" class="control-label"></label>
+                <input asp-for="RobiVegWinterArea" class="form-control" />
+                <span asp-validation-for="RobiVegWinterArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RobiMustardArea" class="control-label"></label>
+                <input asp-for="RobiMustardArea" class="form-control" />
+                <span asp-validation-for="RobiMustardArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RobiOthersArea" class="control-label"></label>
+                <input asp-for="RobiOthersArea" class="form-control" />
+                <span asp-validation-for="RobiOthersArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RobiBenefitedFarmerMale" class="control-label"></label>
+                <input asp-for="RobiBenefitedFarmerMale" class="form-control" />
+                <span asp-validation-for="RobiBenefitedFarmerMale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RobiBenefitedAgricultureLabourMale" class="control-label"></label>
+                <input asp-for="RobiBenefitedAgricultureLabourMale" class="form-control" />
+                <span asp-validation-for="RobiBenefitedAgricultureLabourMale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Kharif1AusArea" class="control-label"></label>
+                <input asp-for="Kharif1AusArea" class="form-control" />
+                <span asp-validation-for="Kharif1AusArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Kharif1JuteArea" class="control-label"></label>
+                <input asp-for="Kharif1JuteArea" class="form-control" />
+                <span asp-validation-for="Kharif1JuteArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Kharif1VegSummerArea" class="control-label"></label>
+                <input asp-for="Kharif1VegSummerArea" class="form-control" />
+                <span asp-validation-for="Kharif1VegSummerArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Kharif1OthersArea" class="control-label"></label>
+                <input asp-for="Kharif1OthersArea" class="form-control" />
+                <span asp-validation-for="Kharif1OthersArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Kharif1BenefitedFarmerMale" class="control-label"></label>
+                <input asp-for="Kharif1BenefitedFarmerMale" class="form-control" />
+                <span asp-validation-for="Kharif1BenefitedFarmerMale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Kharif1BenefitedAgricultureLabourMale" class="control-label"></label>
+                <input asp-for="Kharif1BenefitedAgricultureLabourMale" class="form-control" />
+                <span asp-validation-for="Kharif1BenefitedAgricultureLabourMale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Kharif2TAmanArea" class="control-label"></label>
+                <input asp-for="Kharif2TAmanArea" class="form-control" />
+                <span asp-validation-for="Kharif2TAmanArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Kharif2OthersArea" class="control-label"></label>
+                <input asp-for="Kharif2OthersArea" class="form-control" />
+                <span asp-validation-for="Kharif2OthersArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Kharif2BenefitedFarmerMale" class="control-label"></label>
+                <input asp-for="Kharif2BenefitedFarmerMale" class="form-control" />
+                <span asp-validation-for="Kharif2BenefitedFarmerMale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Kharif2BenefitedAgricultureLabourMale" class="control-label"></label>
+                <input asp-for="Kharif2BenefitedAgricultureLabourMale" class="form-control" />
+                <span asp-validation-for="Kharif2BenefitedAgricultureLabourMale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

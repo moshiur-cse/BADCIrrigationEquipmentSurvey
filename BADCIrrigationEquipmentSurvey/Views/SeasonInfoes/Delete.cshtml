@@ -1,0 +1,28 @@
+﻿@model BADCIrrigationEquipmentSurvey.Models.DataModels.SeasonInfo
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Are you sure you want to delete ?</h3>
+
+<div>
+    <h4>Delete Cropping Season</h4>
+    <hr />
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SeasonName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SeasonName)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="SeasonId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

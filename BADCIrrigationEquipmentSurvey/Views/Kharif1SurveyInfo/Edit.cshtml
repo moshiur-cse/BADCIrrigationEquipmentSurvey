@@ -1,0 +1,92 @@
+﻿@model BADCIrrigationEquipmentSurvey.Models.DataModels.Kharif1SurveyInfo
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<h4>Kharif1SurveyInfo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SurveyKharif1Id" />
+            <div class="form-group">
+                <label asp-for="TotalOperatingHour" class="control-label"></label>
+                <input asp-for="TotalOperatingHour" class="form-control" />
+                <span asp-validation-for="TotalOperatingHour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AusArea" class="control-label"></label>
+                <input asp-for="AusArea" class="form-control" />
+                <span asp-validation-for="AusArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JuteArea" class="control-label"></label>
+                <input asp-for="JuteArea" class="form-control" />
+                <span asp-validation-for="JuteArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VegArea" class="control-label"></label>
+                <input asp-for="VegArea" class="form-control" />
+                <span asp-validation-for="VegArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OthersArea" class="control-label"></label>
+                <input asp-for="OthersArea" class="form-control" />
+                <span asp-validation-for="OthersArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AusCost" class="control-label"></label>
+                <input asp-for="AusCost" class="form-control" />
+                <span asp-validation-for="AusCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JuteCost" class="control-label"></label>
+                <input asp-for="JuteCost" class="form-control" />
+                <span asp-validation-for="JuteCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VegCost" class="control-label"></label>
+                <input asp-for="VegCost" class="form-control" />
+                <span asp-validation-for="VegCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OthersCost" class="control-label"></label>
+                <input asp-for="OthersCost" class="form-control" />
+                <span asp-validation-for="OthersCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BenefitedFarmerMale" class="control-label"></label>
+                <input asp-for="BenefitedFarmerMale" class="form-control" />
+                <span asp-validation-for="BenefitedFarmerMale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BenefitedAgricultureLabourMale" class="control-label"></label>
+                <input asp-for="BenefitedAgricultureLabourMale" class="form-control" />
+                <span asp-validation-for="BenefitedAgricultureLabourMale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="UseInKharif2Season" /> @Html.DisplayNameFor(model => model.UseInKharif2Season)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

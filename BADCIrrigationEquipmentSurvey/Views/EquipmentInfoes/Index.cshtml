@@ -1,0 +1,52 @@
+﻿@model IEnumerable<BADCIrrigationEquipmentSurvey.Models.DataModels.EquipmentInfo>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Irrigation Equipments</h2>
+
+<p>
+    <a asp-action="Create">Add a Irrigation Equipment</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EquipmentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EquipmentTypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NameOfEquipment)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EquipmentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EquipmentTypeInfo.EquipmentType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameOfEquipment)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EquipmentId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.EquipmentId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.EquipmentId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

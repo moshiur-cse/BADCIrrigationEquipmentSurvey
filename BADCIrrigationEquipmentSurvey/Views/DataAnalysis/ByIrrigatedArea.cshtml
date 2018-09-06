@@ -1,0 +1,605 @@
+﻿@using BADCIrrigationEquipmentSurvey.Models.DataModels
+@using BADCIrrigationEquipmentSurvey.Models.ViewModels
+@using Microsoft.AspNetCore.Mvc.ApplicationParts
+@{
+    ViewData["Title"] = "UpazilaWiseIrrigationReports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles {
+
+    <link href="~/css/datetimepicker.css" rel="stylesheet" />
+    <link href="~/css/fixedtablestyle.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-select.css" rel="stylesheet" />
+
+    <style>
+        .columnNo {
+            font-size: 9px !important;
+            font-style: italic !important;
+        }
+
+        .numberAlign {
+            text-align: right !important;
+        }
+
+        .form-view {
+            border: 0 none;
+            margin: 0;
+            padding: 0 15px;
+            color: #135;
+        }
+
+        .data-view {
+            border: 1px solid #ccc;
+            margin: 0 -15px;
+            padding: 8px;
+            background: rgba(200, 240, 245, 0.03);
+            background-color: #fcfeff;
+            overflow: auto;
+        }
+
+        .table {
+            border: 1px solid #ddd;
+            margin: 0 auto;
+        }
+
+            .table td, .table > tbody > td,
+            .table th, .table > thead > th,
+            .table > tr:nth-child(even) > td,
+            .table > tbody > tr:nth-child(even) > td,
+            .table > tr:nth-child(odd) > td,
+            .table > tbody > tr:nth-child(odd) > td {
+                border: 1px solid #ddd !important;
+                padding: 5px;
+                text-align: left;
+                color: #235;
+                font: 500 14px/1.42857 "Helvetica Neue", Helvetica, Arial, sans-serif;
+                background: #fff;
+                /*font-family: Cambria, "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+            }
+
+            .table th, .table > thead > th,
+            .table > thead > tr > th {
+                padding: 5px;
+                text-align: center !important;
+                vertical-align: middle !important;
+                color: #125;
+                font: 500 14px/1.42857 Cambria, "Helvetica Neue", Helvetica, Arial, sans-serif;
+                background-color: #f0f7f8;
+            }
+
+            .table > tr.sub-header-tr > th,
+            .table > thead > tr.sub-header-tr > th {
+                padding: 2px !important;
+            }
+
+                .table th i,
+                .table > tr.sub-header-tr > th > i,
+                .table > thead > th > i,
+                .table > thead > tr > th > i {
+                    font: italic 500 12px/1.42857 Cambria, "Helvetica Neue", Helvetica, Arial, sans-serif;
+                }
+
+            .table > tbody > tr:nth-child(even) > td {
+                padding: 5px;
+                background: #fafdfe !important;
+            }
+
+            .table > tr > td > input,
+            .table > tr > td > select,
+            .table > tbody > tr > td > input,
+            .table > tbody > tr > td > select {
+                width: 120px;
+                padding: 3px 5px !important;
+                text-align: center;
+            }
+
+                .table > tr > td > input.dist-code,
+                .table > tr > td > input.upaz-code,
+                .table > tr > td > input.union-code,
+                .table > tr > td > input.mauza-name,
+                .table > tbody > tr > td > input.dist-code,
+                .table > tbody > tr > td > input.upaz-code,
+                .table > tbody > tr > td > input.union-code,
+                .table > tbody > tr > td > input.mauza-name {
+                    text-align: left;
+                }
+
+                .table > tr > td > input.decimals,
+                .table > tr > td > input.integers,
+                .table > tr > td > input.survey-dates,
+                .table > tbody > tr > td > input.decimals,
+                .table > tbody > tr > td > input.integers,
+                .table > tbody > tr > td > input.survey-dates {
+                    width: 85px;
+                    text-align: center;
+                }
+
+        .dist-code,
+        .upaz-code,
+        .union-code,
+        .mauza-name {
+            text-align: left;
+        }
+
+        .decimals,
+        .integers,
+        .survey-date,
+        .survey-dates {
+            text-align: center;
+        }
+
+        .row {
+            border-color: #ccc;
+            border-style: solid;
+            border-width: 1px 1px 0;
+            margin: 0 -15px;
+            padding: 0;
+            /*background: rgba(200, 240, 245, 0.03);*/
+            background-color: #fcfeff;
+        }
+
+            .row > [class*="col-"] {
+                border: 0 none;
+                margin: 0;
+                padding: 5px 12px;
+            }
+
+                .row > [class*="col-"] > [class*="title-"],
+                .row > [class*="col-"] > label,
+                .row > [class*="col-"] > .control-label {
+                    margin: 6px;
+                    padding: 0;
+                    color: #137;
+                    font: 600 14px/1.42857 Cambria, "Helvetica Neue", Helvetica, Arial, sans-serif;
+                }
+
+            .row > .col-auto {
+                width: auto;
+                max-width: 100%;
+                padding: 5px 12px;
+            }
+
+        .btn-action {
+            min-width: 80px;
+            text-align: center !important;
+            vertical-align: middle !important;
+        }
+
+            .btn-action span.glyphicon {
+                margin: 4px;
+                font-size: 23px;
+                color: #158;
+            }
+
+                .btn-action span.glyphicon:hover {
+                    color: #28d;
+                }
+
+            .btn-action span.glyphicon-remove:hover {
+                color: #f53713 !important;
+            }
+
+
+        .data-title {
+            margin: 20px 0 5px 0;
+            color: #035;
+            font: 500 18pt/1.42857 Roboto, Tahoma, Geneva, Verdana, sans-serif;
+            text-align: left;
+        }
+
+        .data-sub-title {
+            margin: 5px 0;
+            color: #058;
+            font: 500 14pt/1.42857 Roboto, Tahoma, Geneva, Verdana, sans-serif;
+            text-align: left;
+        }
+    </style>
+
+}
+<div style="margin: 0 auto; padding: 0;">
+
+    <div class="row" style="border: solid 2px; padding: 10px">
+
+        <div class="col-md-6">
+            <label>Admin Boundary : </label>
+            <select id="adminName" name="adminName" class="selectpicker">
+                <option value="District" selected="selected">District</option>
+                <option value="Upazila" selected="selected">Upazila</option>
+            </select>
+
+        </div>
+
+        <div class="col-md-6">
+            <label>By Equipment : </label>
+            <select id="equipment" class="selectpicker">
+                <option value="DTW" selected="selected">All</option>
+                <option value="LLP">LLP</option>
+                <option value="STW">STW</option>
+                <option value="DTW">DTW</option>
+                <option value="DTW">Traditional</option>
+                <option value="DTW">Gravity Flow</option>
+                <option value="DTW">Artesian Well</option>
+
+            </select>
+        </div>
+
+
+
+
+    </div>
+    <div class="row" style="text-align: center; margin-top: 20px;margin-bottom: 20px">
+        <button id="ReportView" class="btn btn-default">View Report</button>
+    </div>
+
+    @*<div id="container3" style="min-width: 310px; height: 400px; margin: 0 auto"></div>*@
+    <div class="form-view" id="updatePanel">
+        <div id="multi-form-wrapper" class="data-view multi-form-wrapper">
+            <table id="multi-form-view" class="table table-responsive multi-form-view">
+            <thead>
+            
+            <tr>
+                <th rowspan="3">SL No</th>
+                <th rowspan="3">Upazila</th>
+                <th colspan="18">Irrigated Area</th>
+            </tr>
+            <tr>
+                @*<th rowspan="3">SL No</th>
+                <th rowspan="3">Upazila</th>*@
+                <th rowspan="3">Equipment</th>
+                <th colspan="7">Robi </th>
+                <th colspan="4">Kharif-1</th>
+                <th colspan="2">Kharif-2</th>
+                <th rowspan="2">Total</th>
+            </tr>
+
+
+            <tr>
+                <th>Boro</th>
+                <th>Wheat</th>
+                <th>Potato</th>
+                <th>Maize</th>
+                <th>Veg (W)</th>
+                <th>Mustard</th>
+                <th>Others</th>
+
+                <th>Aus</th>
+                <th>Jute</th>
+                <th>Veg (S)</th>
+                <th>Others</th>
+
+                <th>T-Aman</th>
+                <th>Others</th>
+
+
+            </tr>
+            <tr>
+                <th class="columnNo">1</th>
+                <th class="columnNo">2</th>
+                <th class="columnNo">3</th>
+                <th class="columnNo">4</th>
+                <th class="columnNo">5</th>
+                <th class="columnNo">6</th>
+                <th class="columnNo">7</th>
+                <th class="columnNo">8</th>
+                <th class="columnNo">9</th>
+                <th class="columnNo">10</th>
+                <th class="columnNo">11</th>
+                <th class="columnNo">12</th>
+                <th class="columnNo">13</th>
+                <th class="columnNo">14</th>
+            </tr>
+            </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td rowspan="6" style="vertical-align: middle;">1</td>
+                        <td rowspan="6" style="vertical-align: middle">Madarganj</td>
+                        <td>LLT</td>
+                        <td class="numberAlign">2</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">3</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">150</td>
+                    </tr>
+
+                    <tr>
+
+                        <td>STW</td>
+                        <td class="numberAlign">2</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">3</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">130</td>
+
+                    </tr>
+                    <tr>
+
+                        <td>DTW</td>
+                        <td class="numberAlign">2</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">3</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">160</td>
+                    </tr>
+                    <tr>
+
+                        <td>Traditional</td>
+                        <td class="numberAlign">2</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">3</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">150</td>
+                    </tr>
+                    <tr>
+
+                        <td>Gravity</td>
+                        <td class="numberAlign">2</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">3</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">120</td>
+                    </tr>
+                    <tr>
+
+                        <td>Artesian Well</td>
+                        <td class="numberAlign">2</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">3</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">100</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="6" style="vertical-align: middle;">2</td>
+                        <td rowspan="6" style="vertical-align: middle">Melandoh</td>
+                        <td>LLT</td>
+                        <td class="numberAlign">2</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">3</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">123</td>
+                    </tr>
+
+                    <tr>
+
+                        <td>STW</td>
+                        <td class="numberAlign">2</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">3</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">140</td>
+
+                    </tr>
+                    <tr>
+
+                        <td>DTW</td>
+                        <td class="numberAlign">2</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">3</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">135</td>
+                    </tr>
+                    <tr>
+
+                        <td>Traditional</td>
+                        <td class="numberAlign">2</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">3</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">140</td>
+                    </tr>
+                    <tr>
+
+                        <td>Gravity</td>
+                        <td class="numberAlign">2</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">3</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">150</td>
+                    </tr>
+                    <tr>
+
+                        <td>Artesian Well</td>
+                        <td class="numberAlign">2</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">3</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">4</td>
+                        <td class="numberAlign">200</td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap-select.js"></script>
+    <script>
+
+
+
+
+        $("#ReportView").on("click",
+            function (e) {
+                //e.preventDefault();
+                var adminName = $("#adminName").val();
+                var equipmentName = $("#equipment").val();
+                var sessionName = $("#session").val();
+
+                //var sessionName = "a";
+                //var equipmentName = "b";
+                var condition = "c";
+
+
+                @*@{
+                    string adminName="District", sessionName="", equipmentName = "", condition = "";
+
+                    var url = Url.Action("_ByIrrigationEquipmentsPartialView", new {adminName = "District", sessionName = "", equipmentName = "", condition = ""});
+
+                }*@
+
+
+                $.ajax({
+                    type: 'Get',
+                    url: "../DataAnalysis/_ByIrrigationEquipmentsPartialView?adminName=" + adminName + "&sessionName=" + sessionName + "&equipmentName=" + equipmentName + "&condition=" + condition,
+                         //"/Demo?handler=Send"
+
+                         //dataType: "json",
+                         //data: { adminName: adminName },
+                         cache: false,
+                         contentType: false,
+                         processData: false,
+                         //data: JSON.stringify({
+                         //    distList: distList,
+                         //    field: field
+                         //}),
+                         //contentType: "application/json; charset=utf-8",  this line problem in core application
+                         success: function(data) {
+
+                        $("#updatePanel").empty();
+                        $("#updatePanel").append(data);
+
+                    //("#updatePanel").update();
+                },
+                    complete: function () {
+                        $("#busy-indicator").hide();
+                        $("#busy-indicator").fadeOut();
+
+                }
+
+
+
+            });
+
+            });
+
+        //$.ajax({
+        //    type: "POST",
+        //    url: "/Demo?handler=Send",
+        //    contentType: "application/json; charset=utf-8",
+        //    dataType: "html",
+        //    success: function (response) {
+        //        var dvItems = $("#dvPostItems");
+        //        dvItems.empty();
+        //        $.each(response, function (i, item) {
+        //            var $tr = $('<li>').append(item).appendTo(dvItems);
+        //        });
+        //    },
+        //    failure: function (response) {
+        //        alert(response);
+        //    }
+        //});
+
+    </script>
+}

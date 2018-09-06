@@ -1,0 +1,1140 @@
+﻿
+@using BADCIrrigationEquipmentSurvey.Models.DataModels
+@model IList<SurveyInfo>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+    int noOfRow = 5;
+
+    var equipmentId = ViewBag.EquipmentId;
+    //var equipmentId = ViewData["EquipmentId"];
+
+    var surveyInfoes = (Model != null && Model.Any()) ? Model : new List<SurveyInfo>(noOfRow);
+
+    if (surveyInfoes.Count < noOfRow)
+    {
+        for (int rc = surveyInfoes.Count; rc < noOfRow; rc++)
+        {
+            surveyInfoes.Insert(rc, new SurveyInfo());
+        }
+    }
+
+}
+
+@section styles {
+
+    <link href="~/css/datetimepicker.css" rel="stylesheet" />
+    <link href="~/css/fixedtablestyle.css" rel="stylesheet" />
+
+    <style>
+        .form-view {
+            border: 0 none;
+            margin: 0;
+            padding: 0 15px;
+            color: #135;
+        }
+
+        .data-view {
+            border: 1px solid #ccc;
+            margin: 0 -15px;
+            padding: 8px;
+            background: rgba(200, 240, 245, 0.03);
+            background-color: #fcfeff;
+            overflow: auto;
+        }
+
+        .table {
+            border: 1px solid #ddd;
+            margin: 0 auto;
+        }
+
+            .table td, .table > tbody > td,
+            .table th, .table > thead > th,
+            .table > tr:nth-child(even) > td,
+            .table > tbody > tr:nth-child(even) > td,
+            .table > tr:nth-child(odd) > td,
+            .table > tbody > tr:nth-child(odd) > td {
+                border: 1px solid #ddd !important;
+                padding: 5px;
+                text-align: left;
+                color: #235;
+                font: 500 13px/1.42857 "Helvetica Neue", Helvetica, Arial, sans-serif;
+                background: #fff;
+                /*font-family: Cambria, "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+            }
+
+            .table th, .table > thead > th,
+            .table > thead > tr > th {
+                padding: 5px;
+                text-align: center !important;
+                vertical-align: middle !important;
+                color: #125;
+                font: 500 14px/1.42857 Cambria, "Helvetica Neue", Helvetica, Arial, sans-serif;
+                background-color: #f0f7f8;
+            }
+
+            .table > tr.sub-header-tr > th,
+            .table > thead > tr.sub-header-tr > th {
+                padding: 2px !important;
+            }
+
+                .table th i,
+                .table > tr.sub-header-tr > th > i,
+                .table > thead > th > i,
+                .table > thead > tr > th > i {
+                    display: block;
+                    min-width: 50px;
+                    color: #247;
+                    font: italic 500 12px/1.42857 Cambria, "Helvetica Neue", Helvetica, Arial, sans-serif;
+                }
+
+            .table > tbody > tr:nth-child(even) > td {
+                padding: 5px;
+                background: #fafdfe !important;
+            }
+
+            .table > tr > td > input,
+            .table > tr > td > select,
+            .table > tbody > tr > td > input,
+            .table > tbody > tr > td > select {
+                width: 120px;
+                margin: 0;
+                padding: 3px 5px !important;
+                text-align: center;
+            }
+
+                .table > tr > td > .checkbox,
+                .table > tbody > tr > td > input[type="checkbox"] {
+                    width: 65px;
+                }
+
+                .table > tr > td > input.dist-code,
+                .table > tr > td > input.upaz-code,
+                .table > tr > td > input.union-code,
+                .table > tr > td > input.mauza-name,
+                .table > tbody > tr > td > input.dist-code,
+                .table > tbody > tr > td > input.upaz-code,
+                .table > tbody > tr > td > input.union-code,
+                .table > tbody > tr > td > input.mauza-name {
+                    text-align: left;
+                }
+
+                .table > tr > td > input.decimals,
+                .table > tr > td > input.integers,
+                .table > tr > td > input.survey-dates,
+                .table > tbody > tr > td > input.decimals,
+                .table > tbody > tr > td > input.integers,
+                .table > tbody > tr > td > input.survey-dates {
+                    width: 85px;
+                    text-align: center;
+                }
+
+        .dist-code,
+        .upaz-code,
+        .union-code,
+        .mauza-name {
+            text-align: left;
+        }
+
+        .decimals,
+        .integers,
+        .survey-date,
+        .survey-dates {
+            text-align: center;
+        }
+
+        .row {
+            border-color: #ccc;
+            border-style: solid;
+            border-width: 1px 1px 0;
+            margin: 0 -15px;
+            padding: 0;
+            /*background: rgba(200, 240, 245, 0.03);*/
+            background-color: #fcfeff;
+        }
+
+            .row > [class*="col-"] {
+                border: 0 none;
+                margin: 0;
+                padding: 5px 12px;
+            }
+
+                .row > [class*="col-"] > [class*="title-"],
+                .row > [class*="col-"] > label,
+                .row > [class*="col-"] > .control-label {
+                    margin: 6px;
+                    padding: 0;
+                    color: #137;
+                    font: 600 14px/1.42857 Cambria, "Helvetica Neue", Helvetica, Arial, sans-serif;
+                }
+
+            .row > .col-auto {
+                width: auto;
+                max-width: 100%;
+                padding: 5px 12px;
+            }
+
+        .btn-action {
+            min-width: 80px;
+            text-align: center !important;
+            vertical-align: middle !important;
+        }
+
+            .btn-action span.glyphicon {
+                margin: 4px;
+                font-size: 23px;
+                color: #158;
+            }
+
+                .btn-action span.glyphicon:hover {
+                    color: #28d;
+                }
+
+            .btn-action span.glyphicon-remove:hover {
+                color: #f53713 !important;
+            }
+
+
+        .data-title {
+            margin: 20px 0 5px 0;
+            color: #035;
+            font: 500 18pt/1.42857 Roboto, Tahoma, Geneva, Verdana, sans-serif;
+            text-align: left;
+        }
+
+        .data-sub-title {
+            margin: 5px 0;
+            color: #058;
+            font: 500 14pt/1.42857 Roboto, Tahoma, Geneva, Verdana, sans-serif;
+            text-align: left;
+        }
+    </style>
+
+}
+
+
+<div style="margin: 0 auto; padding: 0;">
+
+    <div style="border-bottom: 2px solid #135; margin: 5px auto; text-align:center;">
+        <strong class="data-title">Irrigation Equipment Survey Form for @ViewBag.Title</strong>
+        <br />
+        <strong class="data-sub-title">(Rabi, Kharip-1 & Kharip-2 Season)</strong>
+    </div>
+
+    @*<div style="border-bottom: 2px solid #135; margin: 5px auto; text-align:center;">
+            <strong class="data-title">Irrigation Equipment Survey Form for Low Lift Pump</strong>
+            <br />
+            <strong class="data-sub-title">(Rabi, Kharip-1 & Kharip-2 Season)</strong>
+        </div>*@
+
+    @*onsubmit="$('#busy-indicator').fadeIn(0);"*@
+
+
+    <div class="form-view">
+
+        <form id="dataform" asp-controller="SurveyInfoes" asp-action="Add" asp-route-equipmentId="@equipmentId">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="row">
+
+                @*<input type="hidden" asp-for="equipmentId" />*@
+                <input type="hidden" name="equipmentId" value="@ViewBag.EquipmentId" />
+
+                @*<div class="form-group">
+                        <input id="comEquipmentId" name="equipmentId" class="form-control" asp-items="ViewBag.EquipmentId" value="@ViewBag.EquipmentId" />
+                    </div>*@
+
+                <div class="col-md-2" style="text-align: right;">
+                    @*<label asp-for="model[0].DistCode" class="control-label"></label>*@
+                    <label class="control-label">
+                        @Html.DisplayNameFor(model => model[0].DistCode) :
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <select id="comDistCode" name="distCode" class="form-control" asp-items="ViewBag.DistCode" value="@ViewBag.distCode">
+                        <option value="" selected="selected" disabled="disabled">----- Select -----</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2" style="text-align: right;">
+                    <label class="control-label">
+                        @Html.DisplayNameFor(model => model[0].UpazCode) :
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <select id="comUpazCode" name="upazCode" class="form-control" asp-items="ViewBag.UpazCode" value="@ViewBag.upazCode">
+                        <option value="" selected="selected" disabled="disabled">----- Select -----</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2" style="text-align: right;">
+                    <label class="control-label">
+                        @Html.DisplayNameFor(model => model[0].SurveyDate) :
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <div class="input-group">
+                        <input id="comSurveyDate" name="surveyDate" class="survey-date form-control" value="@ViewBag.surveyDate" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy" />
+                        <span class="input-group-addon icon-content" id="dpSurveyDate">
+                            <span class="glyphicon glyphicon-calendar icon-font"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="multi-form-wrapper" class="data-view multi-form-wrapper">
+
+                <table id="multi-form-view" class="table table-responsive multi-form-view">
+                    <thead>
+                        <tr>
+                            <th rowspan="3">Sl No.</th>
+                            <th rowspan="2" colspan="5">Name & Location of Scheme</th>
+
+                            <th rowspan="2" colspan="2">Owner/Manager</th>
+                            @*
+        <th rowspan="3">Name of Owner/Manager</th>
+        <th rowspan="3">Mobile No. of Owner/Manager</th>*@
+
+                            <th rowspan="3">Name of Agency</th>
+
+                            <th rowspan="2" colspan="2">Diesel Engine</th>
+
+                            <th rowspan="2" colspan="3">Electric Motor</th>
+
+                            <th rowspan="3">Pump Capacity (Cusec)</th>
+
+
+                            @switch (equipmentId)
+                            {
+                                case 1:
+                                    <th rowspan="3">Source of Surface Water</th>
+                                    break;
+
+                                case 2:
+                                    <th rowspan="3">Smart Card</th>
+                                    break;
+
+                                case 3:
+                                    <th rowspan="3">Pit/Non-Pit</th>
+                                    break;
+
+                                default:
+                                    <th rowspan="3"></th>
+                                    break;
+                            }
+
+
+                            <th rowspan="3">Serviceable</th>
+
+                            <th rowspan="3">Total Operating Hours (hr)</th>
+
+                            <th colspan="13">Rabi Season</th>
+
+                            <th rowspan="2" colspan="4">Irrigation Canal Length (m)</th>
+
+                            <th rowspan="2" colspan="2">Benefited Farmer</th>
+
+                            <th rowspan="2" colspan="2">Benefited Agriculture Labour</th>
+
+                            <th rowspan="3">will it use in Kharif-1 Season</th>
+
+                            
+                            <th rowspan="3">Total Operating Hours (hr)</th>
+
+                            <th colspan="8">Kharif-1 Season</th>
+
+                            <th rowspan="2" colspan="2">Benefited Farmer</th>
+
+                            <th rowspan="2" colspan="2">Benefited Agriculture Labour</th>
+
+                            <th rowspan="3">will it use in Kharif-2 Season</th>
+
+
+                            <th rowspan="3">Total Operating Hours (hr)</th>
+
+                            <th colspan="4">Kharif-1 Season</th>
+
+                            <th rowspan="2" colspan="2">Benefited Farmer</th>
+
+                            <th rowspan="2" colspan="2">Benefited Agriculture Labour</th>
+                        </tr>
+
+                        <tr>
+                            <th colspan="7">Irrigated Area (Acres)</th>
+                            <th colspan="6">Irrigation Cost (Tk/Acre)</th>
+
+                            <th colspan="4">Irrigated Area (Acres)</th>
+                            <th colspan="4">Irrigation Cost (Tk/Acre)</th>
+
+                            <th colspan="2">Irrigated Area (Acres)</th>
+                            <th colspan="2">Irrigation Cost (Tk/Acre)</th>
+                        </tr>
+
+                        <tr>
+                            <th>Name of Scheme</th>
+                            <th>Union</th>
+                            <th>Mauza</th>
+                            <th>J/L No.</th>
+                            <th>Plot No.</th>
+
+                            <th>Name</th>
+                            <th>Mobile No.</th>
+
+                            <th>Make & Model</th>
+                            <th>HP</th>
+
+                            <th>Make & Model</th>
+                            <th>KW</th>
+
+                            <th>Source of Power</th>
+
+                            <th>Boro</th>
+                            <th>Wheat</th>
+                            <th>Potato</th>
+                            <th>Maize</th>
+                            <th>Veg (W)</th>
+                            <th>Mustard</th>
+                            <th>Others</th>
+
+                            <th>Boro</th>
+                            <th>Wheat</th>
+                            <th>Potato</th>
+                            <th>Maize</th>
+                            <th>Veg (W)</th>
+                            <th>Others</th>
+
+                            <th>Pacca</th>
+                            <th>Buried Pipe</th>
+                            <th>Fita Pipe</th>
+                            <th>Kacha</th>
+
+                            <th>Male</th>
+                            <th>Female</th>
+
+                            <th>Male</th>
+                            <th>Female</th>
+
+
+
+                            <th>Aus</th>
+                            <th>Jute</th>
+                            <th>Veg (S)</th>
+                            <th>Others</th>
+
+                            <th>Aus</th>
+                            <th>Jute</th>
+                            <th>Veg (S)</th>
+                            <th>Others</th>
+
+                            <th>Male</th>
+                            <th>Female</th>
+
+                            <th>Male</th>
+                            <th>Female</th>
+                            
+                            
+
+                            <th>T-Aman</th>
+                            <th>Others</th>
+
+                            <th>T-Aman</th>
+                            <th>Others</th>
+
+                            <th>Male</th>
+                            <th>Female</th>
+
+                            <th>Male</th>
+                            <th>Female</th>
+
+                        </tr>
+                        <tr class="sub-header-tr">
+                            <th><i>1</i></th>
+                            <th><i>2</i></th>
+                            <th><i>3</i></th>
+                            <th><i>4</i></th>
+                            <th><i>5</i></th>
+                            <th><i>6</i></th>
+                            <th><i>7</i></th>
+                            <th><i>8</i></th>
+                            <th><i>9</i></th>
+                            <th><i>10</i></th>
+                            <th><i>11</i></th>
+                            <th><i>12</i></th>
+                            <th><i>13</i></th>
+                            <th><i>14</i></th>
+                            <th><i>15</i></th>
+                            <th><i>16</i></th>
+                            <th><i>17</i></th>
+                            <th><i>18</i></th>
+                            <th><i>19</i></th>
+                            <th><i>20</i></th>
+                            <th><i>21</i></th>
+                            <th><i>22</i></th>
+                            <th><i>23</i></th>
+                            <th><i>24</i></th>
+                            <th><i>25</i></th>
+                            <th><i>26</i></th>
+                            <th><i>27</i></th>
+                            <th><i>28</i></th>
+                            <th><i>29</i></th>
+                            <th><i>30</i></th>
+                            <th><i>31</i></th>
+                            <th><i>32</i></th>
+                            <th><i>33</i></th>
+                            <th><i>34</i></th>
+                            <th><i>35</i></th>
+                            <th><i>36</i></th>
+                            <th><i>37</i></th>
+                            <th><i>38</i></th>
+                            <th><i>39</i></th>
+                            <th><i>40</i></th>
+
+                            <th><i>41</i></th>
+                            <th><i>42</i></th>
+                            <th><i>43</i></th>
+                            <th><i>44</i></th>
+                            <th><i>45</i></th>
+                            <th><i>46</i></th>
+                            <th><i>47</i></th>
+                            <th><i>48</i></th>
+                            <th><i>49</i></th>
+                            <th><i>50</i></th>
+
+                            <th><i>51</i></th>
+                            <th><i>52</i></th>
+                            <th><i>53</i></th>
+                            <th><i>54</i></th>
+                            <th><i>55</i></th>
+                            <th><i>56</i></th>
+                            <th><i>57</i></th>
+                            <th><i>58</i></th>
+                            <th><i>59</i></th>
+                            <th><i>60</i></th>
+                            <th><i>61</i></th>
+                            <th><i>62</i></th>
+                            <th><i>63</i></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @for (int rc = 0; rc < noOfRow; ++rc)
+                        {
+                            <tr>
+                                <td style="text-align: center; font-weight: 500;">@(rc + 1).</td>
+                                @*<select asp-for="EquipmentId" class="form-control" asp-items="ViewBag.EquipmentId"></select>*@
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].NameOfScheme" name="surveyInfoes[@rc].NameOfScheme" class="form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].NameOfScheme" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <select asp-for="@surveyInfoes[rc].UnionCode" name="surveyInfoes[@rc].UnionCode" class="union-code form-control" asp-items="ViewBag.UnionCode">
+                                        <option value="" selected="selected" disabled="disabled">---- select ----</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].MauzaName" id="MauzaName_@rc" name="surveyInfoes[@rc].MauzaName" placeholder="Mauza" class="mauza-name form-control" autocomplete="on" />
+                                    <span asp-validation-for="@surveyInfoes[rc].MauzaName" class="text-danger"></span>
+                                    <div id="mauza-list-@rc" class="mauza-list list-content"></div>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].JlNo" name="surveyInfoes[@rc].JlNo" class="integers form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].JlNo" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].PlotNo" name="surveyInfoes[@rc].PlotNo" class="integers form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].PlotNo" class="text-danger"></span>
+                                </td>
+
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].OwnerOrManagerName" name="surveyInfoes[@rc].OwnerOrManagerName" class="form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].OwnerOrManagerName" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].OwnerOrManagerMobileNo" name="surveyInfoes[@rc].OwnerOrManagerMobileNo" class="form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].OwnerOrManagerMobileNo" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <select asp-for="@surveyInfoes[rc].AgencyCode" name="surveyInfoes[@rc].AgencyCode" class="form-control" asp-items="ViewBag.AgencyCode"></select>
+                                </td>
+
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].DieselEngineMakeAndModel" name="surveyInfoes[@rc].DieselEngineMakeAndModel" class="form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].DieselEngineMakeAndModel" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].DieselEngineHp" name="surveyInfoes[@rc].DieselEngineHp" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].DieselEngineHp" class="text-danger"></span>
+                                </td>
+
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].ElectricMotorMakeAndModel" name="surveyInfoes[@rc].ElectricMotorMakeAndModel" class="form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].ElectricMotorMakeAndModel" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].ElectricMotorKw" name="surveyInfoes[@rc].ElectricMotorKw" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].ElectricMotorKw" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <select asp-for="@surveyInfoes[rc].EmPowerSourceCode" name="surveyInfoes[@rc].EmPowerSourceCode" class="form-control" asp-items="ViewBag.EmPowerSourceCode"></select>
+                                </td>
+
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].PumpCapacityInCusec" name="surveyInfoes[@rc].PumpCapacityInCusec" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].PumpCapacityInCusec" class="text-danger"></span>
+                                </td>
+
+
+                                @switch (equipmentId)
+                                {
+                                    case 1:
+                                        <td>
+                                            <select asp-for="@surveyInfoes[rc].SwSourceCode" name="surveyInfoes[@rc].SwSourceCode" class="form-control" asp-items="ViewBag.SwSourceCode">
+                                                <option value="" selected="selected" disabled="disabled">None</option>
+                                            </select>
+                                        </td>
+                                        break;
+
+                                    case 2:
+                                        <td>
+                                            <input asp-for="@surveyInfoes[rc].SmartCard" name="surveyInfoes[@rc].SmartCard" class="form-control" />
+                                        </td>
+                                        break;
+
+                                    case 3:
+                                        bool isPit = (surveyInfoes[rc].IsPit != null) && (surveyInfoes[rc].IsPit != false);
+                                        <td>
+                                            <input asp-for="@isPit" type="checkbox" name="surveyInfoes[@rc].IsPit" class="form-control" />
+                                        </td>
+                                        break;
+
+                                    default:
+                                        <td></td>
+                                        break;
+                                }
+
+
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].IsServiceable" type="checkbox" name="surveyInfoes[@rc].IsServiceable" class="form-control" />
+                                </td>
+
+
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].TotalOperatingHour" name="surveyInfoes[@rc].TotalOperatingHour" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].TotalOperatingHour" class="text-danger"></span>
+                                </td>
+
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].BoroArea" name="surveyInfoes[@rc].BoroArea" class="decimals form-control" maxlength="15" />
+                                    <span asp-validation-for="@surveyInfoes[rc].BoroArea" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].WheatArea" name="surveyInfoes[@rc].WheatArea" class="decimals form-control" data-val="true" />
+                                    <span asp-validation-for="@surveyInfoes[rc].WheatArea" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].PotatoArea" name="surveyInfoes[@rc].PotatoArea" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].PotatoArea" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].MaizeArea" name="surveyInfoes[@rc].MaizeArea" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].MaizeArea" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].VegWinterArea" name="surveyInfoes[@rc].VegWinterArea" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].VegWinterArea" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].MustardArea" name="surveyInfoes[@rc].MustardArea" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].MustardArea" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].OthersArea" name="surveyInfoes[@rc].OthersArea" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].OthersArea" class="text-danger"></span>
+                                </td>
+
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].BoroCost" name="surveyInfoes[@rc].BoroCost" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].BoroCost" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].WheatCost" name="surveyInfoes[@rc].WheatCost" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].WheatCost" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].PotatoCost" name="surveyInfoes[@rc].PotatoCost" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].PotatoCost" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].MaizeCost" name="surveyInfoes[@rc].MaizeCost" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].MaizeCost" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].VegWinterCost" name="surveyInfoes[@rc].VegWinterCost" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].VegWinterCost" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].OthersCost" name="surveyInfoes[@rc].OthersCost" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].OthersCost" class="text-danger"></span>
+                                </td>
+
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].CanalLengthPacca" name="surveyInfoes[@rc].CanalLengthPacca" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].CanalLengthPacca" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].CanalLengthBuriedPipe" name="surveyInfoes[@rc].CanalLengthBuriedPipe" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].CanalLengthBuriedPipe" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].CanalLengthFitaPipe" name="surveyInfoes[@rc].CanalLengthFitaPipe" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].CanalLengthFitaPipe" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].CanalLengthKacha" name="surveyInfoes[@rc].CanalLengthKacha" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].CanalLengthKacha" class="text-danger"></span>
+                                </td>
+
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].BenefitedFarmerMale" name="surveyInfoes[@rc].BenefitedFarmerMale" class="integers form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].BenefitedFarmerMale" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].BenefitedFarmerFemale" name="surveyInfoes[@rc].BenefitedFarmerFemale" class="integers form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].BenefitedFarmerFemale" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].BenefitedAgricultureLabourMale" name="surveyInfoes[@rc].BenefitedAgricultureLabourMale" class="integers form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].BenefitedAgricultureLabourMale" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].BenefitedAgricultureLabourFemale" name="surveyInfoes[@rc].BenefitedAgricultureLabourFemale" class="integers form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].BenefitedAgricultureLabourFemale" class="text-danger"></span>
+                                </td>
+
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].UseInKharif1Season" type="checkbox" name="surveyInfoes[@rc].UseInKharif1Season" class="form-control" />
+                                </td>
+
+
+
+
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].TotalOperatingHourKh1" name="surveyInfoes[@rc].TotalOperatingHourKh1" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].TotalOperatingHourKh1" class="text-danger"></span>
+                                </td>
+
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].AusAreaKh1" name="surveyInfoes[@rc].AusAreaKh1" class="decimals form-control" maxlength="15" />
+                                    <span asp-validation-for="@surveyInfoes[rc].AusAreaKh1" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].JuteAreaKh1" name="surveyInfoes[@rc].JuteAreaKh1" class="decimals form-control" data-val="true" />
+                                    <span asp-validation-for="@surveyInfoes[rc].JuteAreaKh1" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].VegAreaKh1" name="surveyInfoes[@rc].VegAreaKh1" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].VegAreaKh1" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].OthersAreaKh1" name="surveyInfoes[@rc].OthersAreaKh1" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].OthersAreaKh1" class="text-danger"></span>
+                                </td>
+
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].AusCostKh1" name="surveyInfoes[@rc].AusCostKh1" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].AusCostKh1" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].JuteCostKh1" name="surveyInfoes[@rc].JuteCostKh1" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].JuteCostKh1" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].VegCostKh1" name="surveyInfoes[@rc].VegCostKh1" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].VegCostKh1" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].OthersCostKh1" name="surveyInfoes[@rc].OthersCostKh1" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].OthersCostKh1" class="text-danger"></span>
+                                </td>
+
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].BenefitedFarmerMaleKh1" name="surveyInfoes[@rc].BenefitedFarmerMaleKh1" class="integers form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].BenefitedFarmerMaleKh1" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].BenefitedFarmerFemaleKh1" name="surveyInfoes[@rc].BenefitedFarmerFemaleKh1" class="integers form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].BenefitedFarmerFemaleKh1" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].BenefitedAgricultureLabourMaleKh1" name="surveyInfoes[@rc].BenefitedAgricultureLabourMaleKh1" class="integers form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].BenefitedAgricultureLabourMaleKh1" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].BenefitedAgricultureLabourFemaleKh1" name="surveyInfoes[@rc].BenefitedAgricultureLabourFemaleKh1" class="integers form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].BenefitedAgricultureLabourFemaleKh1" class="text-danger"></span>
+                                </td>
+
+
+
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].UseInKharif2Season" type="checkbox" name="surveyInfoes[@rc].UseInKharif2Season" class="form-control" />
+                                </td>
+
+
+
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].TotalOperatingHourKh2" name="surveyInfoes[@rc].TotalOperatingHourKh2" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].TotalOperatingHourKh2" class="text-danger"></span>
+                                </td>
+
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].TAmanAreaKh2" name="surveyInfoes[@rc].TAmanAreaKh2" class="decimals form-control" maxlength="15" />
+                                    <span asp-validation-for="@surveyInfoes[rc].TAmanAreaKh2" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].OthersAreaKh2" name="surveyInfoes[@rc].OthersAreaKh2" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].OthersAreaKh2" class="text-danger"></span>
+                                </td>
+
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].TAmanCostKh2" name="surveyInfoes[@rc].TAmanCostKh2" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].TAmanCostKh2" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].OthersCostKh2" name="surveyInfoes[@rc].OthersCostKh2" class="decimals form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].OthersCostKh2" class="text-danger"></span>
+                                </td>
+
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].BenefitedFarmerMaleKh2" name="surveyInfoes[@rc].BenefitedFarmerMaleKh2" class="integers form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].BenefitedFarmerMaleKh2" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].BenefitedFarmerFemaleKh2" name="surveyInfoes[@rc].BenefitedFarmerFemaleKh2" class="integers form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].BenefitedFarmerFemaleKh2" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].BenefitedAgricultureLabourMaleKh2" name="surveyInfoes[@rc].BenefitedAgricultureLabourMaleKh2" class="integers form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].BenefitedAgricultureLabourMaleKh2" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="@surveyInfoes[rc].BenefitedAgricultureLabourFemaleKh2" name="surveyInfoes[@rc].BenefitedAgricultureLabourFemaleKh2" class="integers form-control" />
+                                    <span asp-validation-for="@surveyInfoes[rc].BenefitedAgricultureLabourFemaleKh2" class="text-danger"></span>
+                                </td>
+
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div style="padding: 10px; text-align: center;">
+                <a asp-action="Index" asp-route-equipmentId="@equipmentId" class="btn-blue">Back to List</a>
+
+                <input id="btnSave" type="submit" value="Save" class="btn-blue" style="min-width: 85px;" />
+
+                @*<input id="btnSubmit" type="button" value="Submit" class="btn-blue" style="min-width: 75px;" />*@
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+
+    <partial name="_ValidationScriptsPartial" />
+
+    @*@await Html.PartialAsync("_ValidationScriptsPartial")*@
+    @*@await Html.RenderPartialAsync("_ValidationScriptsPartial")*@
+    @*<script type="text/javascript" src="~/js/datetimepicker.js"></script>*@
+
+    <script type="text/javascript" src="~/js/datetimepicker.js"></script>
+    <script type="text/javascript" src="~/js/numeric.js"></script>
+    <script type="text/javascript" src="~/js/fixedtable.js"></script>
+
+    <script type="text/javascript">
+
+        //@* window.msg.init("error", "Error... . . !", "@ViewBag.Error");*@
+
+        var errMsg = "@ViewBag.Error".trim();
+        if (errMsg != "" && errMsg.length > 0) {
+            window.msg.init("error", "Error... . . !", errMsg);
+        }
+
+
+        $(function () {
+
+            //$("#dataform").submit(function (evt) {
+            //    //evt.preventDefault();
+
+            //    $("#busy-indicator").fadeIn(0);
+            //    $("input[type='submit']#btnSave", this)
+            //        .val("Please wait.. .")
+            //        .prop("disabled", "disabled");
+            //    //$(this).submit();
+            //    return true;
+            //});
+
+
+            //$("#btnSubmit").on("click", function () {
+            //    $("#busy-indicator").fadeIn(0);
+            //    $(this).prop("disabled", "disabled").val("Please wait.. .");
+            //    //alert('Please wait.. .');
+            //    //wait();
+            //    $("#dataform").submit();
+            //});
+
+            $("#btnSave").on("click", function (evt) {
+                evt.preventDefault();
+                $("#busy-indicator").fadeIn(100);
+
+                $(this).prop("disabled", "disabled").val("Please wait.. .");
+
+                $("#dataform").submit();
+            });
+
+
+            // 0=false, 1=true
+            $(".integers").numeric({ decimal: 0, negative: 0, localize: 0, fract_digits: 0 });
+            $(".decimals").numeric({ decimal: 1, negative: 0, localize: 0, fract_digits: 2 });
+
+            //$("#multi-form-view").fixedHeaderTable({
+            //    altClass: "even",
+            //    footer: false,
+            //    cloneHeadToFoot: false,
+            //    autoShow: true,
+            //    fixedColumns: 0,
+            //    autoResize: true
+            //});
+
+            $("#comSurveyDate").datetimepicker({
+                lang: "en",
+                format: "d-m-Y",
+                formatTime: "",
+                formatDate: "d-m-Y",
+                timepicker: false
+            });
+
+            $("#dpSurveyDate").on("click", function () {
+                $("#comSurveyDate").datetimepicker("show");
+            });
+
+
+            $("#comSurveyDate").on("change",
+                function () {
+                    $(".survey-dates").val($("#comSurveyDate").val());
+                });
+
+
+            $("#comDistCode").on("change",
+                function () {
+                    var distCode = $("#comDistCode").val(),
+                        $upazila = $("#comUpazCode");
+
+                    $upazila.empty();
+                    $(".dist-code").val(distCode);
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("GetUpazilaList")",
+                        dataType: "json",
+                        data: { distCode: distCode },
+                        //before: $("#busy-indicator").fadeIn(150),
+                        success: function (upazilas) {
+                            $upazila.append('<option value="" selected="selected" disabled="disabled">----- Select -----</option>');
+                            $.each(upazilas,
+                                function (i, upazila) {
+                                    $("<option />").val(upazila.value).html(upazila.text).appendTo($upazila);
+                                });
+                        },
+                        error: function (ex) {
+                            window.msg.init("error", "Error... . . !", "Failed to load upazila list. " + ex.error);
+                        },
+                        //complete: $("#busy-indicator").fadeOut(150)
+                    });
+                    return false;
+                });
+
+            $("#comUpazCode").on("change",
+                function () {
+                    var distCode = $("#comDistCode").val(),
+                        upazCode = $(this).val(),
+                        $unions = $(".union-code");
+
+                    $unions.empty();
+                    $(".upaz-code").val(upazCode);
+
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("GetUnionList")",
+                        dataType: "json",
+                        data: { distCode: distCode, upazCode: upazCode },
+                        //before: $("#busy-indicator").fadeIn(150),
+                        success: function (unions) {
+                            $unions.append('<option value="" selected="selected" disabled="disabled">---- select ----</option>');
+                            $.each(unions,
+                                function (i, union) {
+                                    $("<option />").val(union.value).html(union.text).appendTo($unions);
+                                    //$unions.append('<option value="' + union.value + '">' + union.text + '</option>');
+                                });
+                        },
+                        error: function (ex) {
+                            window.msg.init("error", "Error... . . !", "Failed to load union list. " + ex.error);
+                        },
+                        //complete: $("#busy-indicator").fadeOut(150)
+                    });
+                    return false;
+                });
+
+
+            $(".union-code").on("change",
+                function () {
+                    var distCode = $("#comDistCode").val(),
+                        upazCode = $("#comUpazCode").val(),
+                        unionCode = $(this).val(),
+                        $mauza = $(this).closest("tr").find(".mauza-name:first");
+
+                    $mauza.empty();
+
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("GetMauzaList")',
+                        dataType: "json",
+                        data: { distCode: distCode, upazCode: upazCode, unionCode: unionCode },
+                        //before: $("#busy-indicator").fadeIn(150),
+                        success: function (mauzas) {
+
+                            var mauzaList = $.map(mauzas, function (mauza) { return mauza.text; }),
+                                $parentId = $mauza.closest("td").find(".mauza-list:first")[0].id;
+
+                            $mauza.autocomplete({
+                                highlight: "highlight-text",
+                                appendTo: "#" + $parentId,
+                                minLength: 0,
+                                source: mauzaList
+                            }).on("focus", function () { $(this).trigger("keydown"); });
+
+                            //$.each(mauzas,
+                            //    function(i, mauza) {
+                            //        $mauza_sel.append('<option value="' + mauza.value + '">' + mauza.text + '</option>');
+                            //    });
+                        },
+                        error: function (ex) {
+                            window.msg.init("error", "Error... . . !", "Failed to load mauza list. " + ex.error);
+                        },
+                        //complete: $("#busy-indicator").fadeOut(150)
+                    });
+                    return false;
+                });
+
+
+
+
+
+
+            /**/
+
+            //console.log($.validator);
+
+            if ($.validator) {
+
+                $.validator.addMethod("date",
+                    function (value, element) {
+                        if (this.optional(element)) {
+                            return true;
+                        };
+
+                        if (value.match(/\-/g).length < 2 &&
+                            value.match(/\./g).length < 2 &&
+                            value.match(/\//g).length < 2)
+                            return false;
+
+                        var regExpDate =
+                            new RegExp(/^(0?[1-9]|[12][0-9]|3[01])[\/\-\.](0?[1-9]|1[012])[\/\-\.](\d{4})$/);
+                        var match = regExpDate.exec(value);
+                        if (match == null)
+                            return false;
+
+                        var year = parseInt(match[3], 10),
+                            month = parseInt(match[2], 10),
+                            day = parseInt(match[1], 10),
+                            date = new Date(year, month - 1, day);
+
+                        return (date.getFullYear() == year && date.getMonth() == (month - 1) && date.getDate() == day);
+                    },
+                    " Invalid date !! must be DD-MM-YYYY or DD.MM.YYYY format."
+                );
+            }
+
+
+
+        });
+
+                                    //$("#btnAddSeniorStaff").on("click",function () {
+                                    //    $("#EmpId").val("");
+                                    //    $("#txtSeniorStaff").val("");
+                                    //    $("#allSeniorStaff").val($("#NameOfSeniorStaffs").val());
+
+                                    //    window.modal_open("sss_modal", 20);
+                                    //    return false;
+                                    // });
+
+
+                                    //$("#ClientId").on("change",function () {
+                                    //    var cname = $.trim($("#ClientId :selected").text()),
+                                    //        caddress = $.trim($("#ClientId :selected").attr("data-client-address"));
+
+                                    //    $("#NameOfClient").val(cname + (caddress ? ", \n" + caddress : ""));
+                                    //});
+
+                                    //$("#CompletedById").on("change",function () {
+                                    //    $("#CompletedBy").val($("#CompletedById :selected").text());
+                                    //});
+
+                                    //$("#EmpId").on("change",function () {
+                                    //    $("#txtSeniorStaff").val($("#EmpId :selected").text());
+                                    //});
+
+                                    //$("#btnAddSeniorStaffTemp").on("click",function () {
+                                    //    var txt = $("#allSeniorStaff").val() ? $("#allSeniorStaff").val() : "";
+                                    //    txt += $("#txtSeniorStaff").val() ? (txt ? "\n▣ " : "▣ ") + $("#txtSeniorStaff").val() : "";
+
+                                    //    $("#allSeniorStaff").val(txt);
+                                    //    $("#txtSeniorStaff").val("");
+
+                                    //    return false;
+                                    //});
+
+                                    //$("#btnAddSeniorStaffDone").on("click",function () {
+                                    //    var txt = $("#NameOfSeniorStaffs").val()
+                                    //        ? $("#NameOfSeniorStaffs").val() + "\n" + $("#allSeniorStaff").val()
+                                    //        : $("#allSeniorStaff").val();
+                                    //    $("#NameOfSeniorStaffs").val(txt);
+
+                                    //    $("#EmpId").val("");
+                                    //    $("#txtSeniorStaff").val("");
+                                    //    $("#allSeniorStaff").val("");
+
+                                    //    window.modal_close("sss_modal", 20);
+
+                                    //    if (txt) {
+                                    //        window.msg.init("information","Completed... . . ",
+                                    //            "Senior Staff information successfully added !");
+                                    //    } else {
+                                    //        window.msg.init("warning", "Warning... . . ", "No Senior Staff information added !!");
+                                    //    }
+
+                                    //    return false;
+                                    //});
+
+    </script>
+
+}

@@ -1,0 +1,259 @@
+﻿@model BADCIrrigationEquipmentSurvey.Models.DataModels.SurveyInfo
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<h4>SurveyInfo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SurveyId" />
+            <div class="form-group">
+                <label asp-for="EquipmentId" class="control-label"></label>
+                <select asp-for="EquipmentId" class="form-control" asp-items="ViewBag.EquipmentId"></select>
+                <span asp-validation-for="EquipmentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DistCode" class="control-label"></label>
+                <select asp-for="DistCode" class="form-control" asp-items="ViewBag.DistCode"></select>
+                <span asp-validation-for="DistCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpazCode" class="control-label"></label>
+                <select asp-for="UpazCode" class="form-control" asp-items="ViewBag.UpazCode"></select>
+                <span asp-validation-for="UpazCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnionCode" class="control-label"></label>
+                <select asp-for="UnionCode" class="form-control" asp-items="ViewBag.UnionCode"></select>
+                <span asp-validation-for="UnionCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MauzaName" class="control-label"></label>
+                <input asp-for="MauzaName" class="form-control" />
+                <span asp-validation-for="MauzaName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JlNo" class="control-label"></label>
+                <input asp-for="JlNo" class="form-control" />
+                <span asp-validation-for="JlNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlotNo" class="control-label"></label>
+                <input asp-for="PlotNo" class="form-control" />
+                <span asp-validation-for="PlotNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SurveyDate" class="control-label"></label>
+                <input asp-for="SurveyDate" class="form-control" />
+                <span asp-validation-for="SurveyDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NameOfScheme" class="control-label"></label>
+                <input asp-for="NameOfScheme" class="form-control" />
+                <span asp-validation-for="NameOfScheme" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OwnerOrManagerName" class="control-label"></label>
+                <input asp-for="OwnerOrManagerName" class="form-control" />
+                <span asp-validation-for="OwnerOrManagerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OwnerOrManagerMobileNo" class="control-label"></label>
+                <input asp-for="OwnerOrManagerMobileNo" class="form-control" />
+                <span asp-validation-for="OwnerOrManagerMobileNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AgencyCode" class="control-label"></label>
+                <select asp-for="AgencyCode" class="form-control" asp-items="ViewBag.AgencyCode"></select>
+                <span asp-validation-for="AgencyCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DieselEngineMakeAndModel" class="control-label"></label>
+                <input asp-for="DieselEngineMakeAndModel" class="form-control" />
+                <span asp-validation-for="DieselEngineMakeAndModel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DieselEngineHp" class="control-label"></label>
+                <input asp-for="DieselEngineHp" class="form-control" />
+                <span asp-validation-for="DieselEngineHp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ElectricMotorMakeAndModel" class="control-label"></label>
+                <input asp-for="ElectricMotorMakeAndModel" class="form-control" />
+                <span asp-validation-for="ElectricMotorMakeAndModel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ElectricMotorKw" class="control-label"></label>
+                <input asp-for="ElectricMotorKw" class="form-control" />
+                <span asp-validation-for="ElectricMotorKw" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmPowerSourceCode" class="control-label"></label>
+                <select asp-for="EmPowerSourceCode" class="form-control" asp-items="ViewBag.EmPowerSourceCode"></select>
+                <span asp-validation-for="EmPowerSourceCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PumpCapacityInCusec" class="control-label"></label>
+                <input asp-for="PumpCapacityInCusec" class="form-control" />
+                <span asp-validation-for="PumpCapacityInCusec" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SwSourceCode" class="control-label"></label>
+                <select asp-for="SwSourceCode" class="form-control" asp-items="ViewBag.SwSourceCode"></select>
+                <span asp-validation-for="SwSourceCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SmartCard" class="control-label"></label>
+                <input asp-for="SmartCard" class="form-control" />
+                <span asp-validation-for="SmartCard" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsPit" class="control-label"></label>
+                <input asp-for="IsPit" class="form-control" />
+                <span asp-validation-for="IsPit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsServiceable" /> @Html.DisplayNameFor(model => model.IsServiceable)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalOperatingHour" class="control-label"></label>
+                <input asp-for="TotalOperatingHour" class="form-control" />
+                <span asp-validation-for="TotalOperatingHour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BoroArea" class="control-label"></label>
+                <input asp-for="BoroArea" class="form-control" />
+                <span asp-validation-for="BoroArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WheatArea" class="control-label"></label>
+                <input asp-for="WheatArea" class="form-control" />
+                <span asp-validation-for="WheatArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PotatoArea" class="control-label"></label>
+                <input asp-for="PotatoArea" class="form-control" />
+                <span asp-validation-for="PotatoArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaizeArea" class="control-label"></label>
+                <input asp-for="MaizeArea" class="form-control" />
+                <span asp-validation-for="MaizeArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VegWinterArea" class="control-label"></label>
+                <input asp-for="VegWinterArea" class="form-control" />
+                <span asp-validation-for="VegWinterArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MustardArea" class="control-label"></label>
+                <input asp-for="MustardArea" class="form-control" />
+                <span asp-validation-for="MustardArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OthersArea" class="control-label"></label>
+                <input asp-for="OthersArea" class="form-control" />
+                <span asp-validation-for="OthersArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BoroCost" class="control-label"></label>
+                <input asp-for="BoroCost" class="form-control" />
+                <span asp-validation-for="BoroCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WheatCost" class="control-label"></label>
+                <input asp-for="WheatCost" class="form-control" />
+                <span asp-validation-for="WheatCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PotatoCost" class="control-label"></label>
+                <input asp-for="PotatoCost" class="form-control" />
+                <span asp-validation-for="PotatoCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaizeCost" class="control-label"></label>
+                <input asp-for="MaizeCost" class="form-control" />
+                <span asp-validation-for="MaizeCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VegWinterCost" class="control-label"></label>
+                <input asp-for="VegWinterCost" class="form-control" />
+                <span asp-validation-for="VegWinterCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OthersCost" class="control-label"></label>
+                <input asp-for="OthersCost" class="form-control" />
+                <span asp-validation-for="OthersCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CanalLengthPacca" class="control-label"></label>
+                <input asp-for="CanalLengthPacca" class="form-control" />
+                <span asp-validation-for="CanalLengthPacca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CanalLengthBuriedPipe" class="control-label"></label>
+                <input asp-for="CanalLengthBuriedPipe" class="form-control" />
+                <span asp-validation-for="CanalLengthBuriedPipe" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CanalLengthFitaPipe" class="control-label"></label>
+                <input asp-for="CanalLengthFitaPipe" class="form-control" />
+                <span asp-validation-for="CanalLengthFitaPipe" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CanalLengthKacha" class="control-label"></label>
+                <input asp-for="CanalLengthKacha" class="form-control" />
+                <span asp-validation-for="CanalLengthKacha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BenefitedFarmerMale" class="control-label"></label>
+                <input asp-for="BenefitedFarmerMale" class="form-control" />
+                <span asp-validation-for="BenefitedFarmerMale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BenefitedAgricultureLabourMale" class="control-label"></label>
+                <input asp-for="BenefitedAgricultureLabourMale" class="form-control" />
+                <span asp-validation-for="BenefitedAgricultureLabourMale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="UseInKharif1Season" /> @Html.DisplayNameFor(model => model.UseInKharif1Season)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="EntryDateTime" class="control-label"></label>
+                <input asp-for="EntryDateTime" class="form-control" />
+                <span asp-validation-for="EntryDateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EntryUserId" class="control-label"></label>
+                <input asp-for="EntryUserId" class="form-control" />
+                <span asp-validation-for="EntryUserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

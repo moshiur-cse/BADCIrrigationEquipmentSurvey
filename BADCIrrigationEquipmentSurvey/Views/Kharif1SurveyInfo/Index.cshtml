@@ -1,0 +1,102 @@
+﻿@model IEnumerable<BADCIrrigationEquipmentSurvey.Models.DataModels.Kharif1SurveyInfo>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalOperatingHour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AusArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JuteArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VegArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OthersArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AusCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JuteCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VegCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OthersCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BenefitedFarmerMale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BenefitedAgricultureLabourMale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UseInKharif2Season)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalOperatingHour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AusArea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JuteArea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VegArea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OthersArea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AusCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JuteCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VegCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OthersCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BenefitedFarmerMale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BenefitedAgricultureLabourMale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UseInKharif2Season)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SurveyKharif1Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SurveyKharif1Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SurveyKharif1Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

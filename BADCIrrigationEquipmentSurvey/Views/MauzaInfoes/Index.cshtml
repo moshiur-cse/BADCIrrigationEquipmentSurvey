@@ -1,0 +1,88 @@
+﻿@model IEnumerable<BADCIrrigationEquipmentSurvey.Models.DataModels.MauzaInfo>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DistCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DistrictInfo.DistName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpazCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpazilaInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnionCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnionInfo.UnionName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MauzaCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MauzaName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MauzaJlNo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DistCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DistrictInfo.DistName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpazCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpazilaInfo.UpazName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnionCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnionInfo.UnionName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MauzaCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MauzaName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MauzaJlNo)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.MauzaCode">Details</a>
+
+                    @*<a asp-action="Edit" asp-route-id="@item.MauzaCode">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.MauzaCode">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.MauzaCode">Delete</a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
