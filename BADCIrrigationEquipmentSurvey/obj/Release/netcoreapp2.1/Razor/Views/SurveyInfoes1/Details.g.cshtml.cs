@@ -975,7 +975,7 @@ using BADCIrrigationEquipmentSurvey.Models.BasicModels;
             WriteLiteral("\r\n        </dd>\r\n    </dl>\r\n</div>\r\n<div>\r\n    ");
             EndContext();
             BeginContext(8652, 60, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "13c8b1dd7fb24435a10a3f34f6f4995c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5381d3072b3d4f7f929043f19efe28d3", async() => {
                 BeginContext(8704, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -1010,7 +1010,7 @@ using BADCIrrigationEquipmentSurvey.Models.BasicModels;
             WriteLiteral(" |\r\n    ");
             EndContext();
             BeginContext(8720, 38, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "424a98699f6b4a768db2dac782e131e4", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "58de869298e7487a829e4e52f2b0114f", async() => {
                 BeginContext(8742, 12, true);
                 WriteLiteral("Back to List");
                 EndContext();

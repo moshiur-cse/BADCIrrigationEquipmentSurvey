@@ -12374,11 +12374,11 @@
   "project": {
     "version": "1.0.3",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\Repos\\BADCIrrigationEquipmentSurvey\\BADCIrrigationEquipmentSurvey\\BADCIrrigationEquipmentSurvey.csproj",
+      "projectUniqueName": "D:\\Projects\\BAC002\\WebSite\\BADCIrrigationEquipmentSurvey\\BADCIrrigationEquipmentSurvey\\BADCIrrigationEquipmentSurvey.csproj",
       "projectName": "BADCIrrigationEquipmentSurvey",
-      "projectPath": "D:\\Projects\\Repos\\BADCIrrigationEquipmentSurvey\\BADCIrrigationEquipmentSurvey\\BADCIrrigationEquipmentSurvey.csproj",
+      "projectPath": "D:\\Projects\\BAC002\\WebSite\\BADCIrrigationEquipmentSurvey\\BADCIrrigationEquipmentSurvey\\BADCIrrigationEquipmentSurvey.csproj",
       "packagesPath": "C:\\Users\\AHI\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\Repos\\BADCIrrigationEquipmentSurvey\\BADCIrrigationEquipmentSurvey\\obj\\",
+      "outputPath": "D:\\Projects\\BAC002\\WebSite\\BADCIrrigationEquipmentSurvey\\BADCIrrigationEquipmentSurvey\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

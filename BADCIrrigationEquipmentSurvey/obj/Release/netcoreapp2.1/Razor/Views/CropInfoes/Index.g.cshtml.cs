@@ -77,7 +77,7 @@ using BADCIrrigationEquipmentSurvey.Models.BasicModels;
             WriteLiteral("\r\n<h2>Crops Information</h2>\r\n\r\n<p>\r\n    ");
             EndContext();
             BeginContext(209, 37, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "76b23d968fca4560931277fd9a27a4cd", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5777c6de631b4f7e8659b23b17d32cd0", async() => {
                 BeginContext(232, 10, true);
                 WriteLiteral("Add a Crop");
                 EndContext();
@@ -168,7 +168,7 @@ using BADCIrrigationEquipmentSurvey.Models.BasicModels;
             WriteLiteral("\r\n                </td>\r\n                <td>\r\n                    ");
             EndContext();
             BeginContext(1124, 57, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "43804350ca574c548c250c26f2b115a2", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e75272e6a5614bcd9d2f9d2be3894539", async() => {
                 BeginContext(1173, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -203,7 +203,7 @@ using BADCIrrigationEquipmentSurvey.Models.BasicModels;
             WriteLiteral(" |\r\n                    ");
             EndContext();
             BeginContext(1205, 63, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d3b080e3490e414eae317e2c9b553b92", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fc032f71c7f045daaf978e1962380628", async() => {
                 BeginContext(1257, 7, true);
                 WriteLiteral("Details");
                 EndContext();
@@ -238,7 +238,7 @@ using BADCIrrigationEquipmentSurvey.Models.BasicModels;
             WriteLiteral(" |\r\n                    ");
             EndContext();
             BeginContext(1292, 61, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c99dadce13d242b9b6f538962fb1bc04", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c552c2118fe441c992563a766a2ea5b2", async() => {
                 BeginContext(1343, 6, true);
                 WriteLiteral("Delete");
                 EndContext();

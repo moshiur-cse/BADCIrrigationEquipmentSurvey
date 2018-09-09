@@ -566,3 +566,9 @@ D:\Projects\Repos\BADCIrrigationEquipmentSurvey\BADCIrrigationEquipmentSurvey\ob
 D:\Projects\Repos\BADCIrrigationEquipmentSurvey\BADCIrrigationEquipmentSurvey\obj\Debug\netcoreapp2.1\BADCIrrigationEquipmentSurvey.RazorTargetAssemblyInfo.cs
 D:\Projects\Repos\BADCIrrigationEquipmentSurvey\BADCIrrigationEquipmentSurvey\obj\Debug\netcoreapp2.1\BADCIrrigationEquipmentSurvey.Views.pdb
 D:\Projects\Repos\BADCIrrigationEquipmentSurvey\BADCIrrigationEquipmentSurvey\obj\Debug\netcoreapp2.1\BADCIrrigationEquipmentSurvey.csproj.CopyComplete
+D:\Projects\BAC002\WebSite\BADCIrrigationEquipmentSurvey\BADCIrrigationEquipmentSurvey\obj\Debug\netcoreapp2.1\Razor\Views\Home\DataMap.Google.g.cshtml.cs
+D:\Projects\BAC002\WebSite\BADCIrrigationEquipmentSurvey\BADCIrrigationEquipmentSurvey\obj\Debug\netcoreapp2.1\Razor\Views\SurveyInfoes2\Create.g.cshtml.cs
+D:\Projects\BAC002\WebSite\BADCIrrigationEquipmentSurvey\BADCIrrigationEquipmentSurvey\obj\Debug\netcoreapp2.1\Razor\Views\SurveyInfoes2\Delete.g.cshtml.cs
+D:\Projects\BAC002\WebSite\BADCIrrigationEquipmentSurvey\BADCIrrigationEquipmentSurvey\obj\Debug\netcoreapp2.1\Razor\Views\SurveyInfoes2\Details.g.cshtml.cs
+D:\Projects\BAC002\WebSite\BADCIrrigationEquipmentSurvey\BADCIrrigationEquipmentSurvey\obj\Debug\netcoreapp2.1\Razor\Views\SurveyInfoes2\Edit.g.cshtml.cs
+D:\Projects\BAC002\WebSite\BADCIrrigationEquipmentSurvey\BADCIrrigationEquipmentSurvey\obj\Debug\netcoreapp2.1\Razor\Views\SurveyInfoes2\Index.g.cshtml.cs

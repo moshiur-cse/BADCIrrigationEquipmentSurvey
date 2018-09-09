@@ -99,7 +99,7 @@ using BADCIrrigationEquipmentSurvey.Models.DataModels;
                 WriteLiteral("\r\n\r\n    ");
                 EndContext();
                 BeginContext(322, 57, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "1dcc7a44eb4c4600b7afdec4387907ff", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "f6199feb50be4b66bcb7a7af78d2fdad", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -118,7 +118,7 @@ using BADCIrrigationEquipmentSurvey.Models.DataModels;
                 WriteLiteral("\r\n    ");
                 EndContext();
                 BeginContext(385, 58, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "4d9be18d90bf436d8f9895b6487a2c09", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "32039529ca3f4fd18930e3a63d29d3cf", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -1041,7 +1041,7 @@ using BADCIrrigationEquipmentSurvey.Models.DataModels;
             WriteLiteral("\r\n                            </td>\r\n\r\n                            <td>\r\n                                ");
             EndContext();
             BeginContext(20879, 59, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ec932c18c72646a293835d8d1a817d3e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "eb26fe5f3cbb4f07b2291111ac3cd525", async() => {
                 BeginContext(20930, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -1076,7 +1076,7 @@ using BADCIrrigationEquipmentSurvey.Models.DataModels;
             WriteLiteral(" |\r\n                                ");
             EndContext();
             BeginContext(20974, 65, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f2e990864d64e658337bab7f526744d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dbc3d89191eb4f379586e727dc95d1e9", async() => {
                 BeginContext(21028, 7, true);
                 WriteLiteral("Details");
                 EndContext();
@@ -1111,7 +1111,7 @@ using BADCIrrigationEquipmentSurvey.Models.DataModels;
             WriteLiteral(" |\r\n                                ");
             EndContext();
             BeginContext(21075, 63, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f369305d9cb141bc9a2053cc38b4b9f2", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1c6aed9c474a4b969a710d35ba9d99dc", async() => {
                 BeginContext(21128, 6, true);
                 WriteLiteral("Delete");
                 EndContext();
@@ -1158,7 +1158,7 @@ using BADCIrrigationEquipmentSurvey.Models.DataModels;
                 WriteLiteral("\r\n\r\n    ");
                 EndContext();
                 BeginContext(21347, 44, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "7fe469c483844f7cae0346b896861c61", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "a00d2ecd477a4e5791af005d4bcc581d", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();
@@ -1177,7 +1177,7 @@ using BADCIrrigationEquipmentSurvey.Models.DataModels;
                 WriteLiteral("\r\n\r\n    ");
                 EndContext();
                 BeginContext(21399, 65, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "46b345bd03904a22941c08eaaea3b79f", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "61340c057a0f4b5288e8c25f7364dc99", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
