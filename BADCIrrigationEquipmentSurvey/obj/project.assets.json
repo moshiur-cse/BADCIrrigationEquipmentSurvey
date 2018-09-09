@@ -12368,23 +12368,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\RMO\\.nuget\\packages\\": {},
+    "C:\\Users\\AHI\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.3",
     "restore": {
-      "projectUniqueName": "D:\\BADCIrrigationEquipmentSurvey\\BADCIrrigationEquipmentSurvey\\BADCIrrigationEquipmentSurvey.csproj",
+      "projectUniqueName": "D:\\Projects\\Repos\\BADCIrrigationEquipmentSurvey\\BADCIrrigationEquipmentSurvey\\BADCIrrigationEquipmentSurvey.csproj",
       "projectName": "BADCIrrigationEquipmentSurvey",
-      "projectPath": "D:\\BADCIrrigationEquipmentSurvey\\BADCIrrigationEquipmentSurvey\\BADCIrrigationEquipmentSurvey.csproj",
-      "packagesPath": "C:\\Users\\RMO\\.nuget\\packages\\",
-      "outputPath": "D:\\BADCIrrigationEquipmentSurvey\\BADCIrrigationEquipmentSurvey\\obj\\",
+      "projectPath": "D:\\Projects\\Repos\\BADCIrrigationEquipmentSurvey\\BADCIrrigationEquipmentSurvey\\BADCIrrigationEquipmentSurvey.csproj",
+      "packagesPath": "C:\\Users\\AHI\\.nuget\\packages\\",
+      "outputPath": "D:\\Projects\\Repos\\BADCIrrigationEquipmentSurvey\\BADCIrrigationEquipmentSurvey\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\RMO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\AHI\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12392,6 +12392,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://aka.ms/dotnet-download": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
