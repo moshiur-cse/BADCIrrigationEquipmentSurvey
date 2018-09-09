@@ -554,15 +554,14 @@
 
     </script>
 
-
-
     <script type="text/javascript">
-        var blankUrl = '/Content/images/blank.png',
+
+        var blankUrl = '../images/blank.png',
             osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
             baseUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
             googleUrl = 'http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}',
             mapAttrib = '&copy; <a href="http://www.cegisbd.com/">CEGIS</a>',
-            map = new L.Map('map', { center: new L.LatLng(23.78035, 90.41664), zoomControl: false, zoom: 6.5 }),
+            map = new L.Map('map', { center: new L.LatLng(23.737777, 90.537777), zoomControl: false, zoom: 7.0 }),
             drawnItems = L.featureGroup().addTo(map);
 
         var blank = L.tileLayer(blankUrl, { minZoom: 0, maxZoom: 25, attribution: mapAttrib }),
@@ -577,11 +576,12 @@
 
         //map fit to 100%
         var mapfit = L.control({ position: "topright" });
-        mapfit.onAdd = function (map) {
+        mapfit.onAdd = function(map) {
             var div = L.DomUtil.createWithID("div", "mapfit", "info map-fit");
             div.innerHTML = '<i class="fa fa-arrows-alt"></i>';
             return div;
-        }
+        };
+
         mapfit.addTo(map);
 
         L.control.layers(
@@ -631,7 +631,7 @@
                 }
 
                 if (feature.properties['SL ID'] != '') {
-                    out.push("<img src='/Content/images/slimage/" + feature.properties['SL ID'] + ".jpg' title='" + feature.properties['Name'] + ', ' + feature.properties['River'] + "' style='width: 70%;' class='img-responsive img-rounded img-thumbnail' /><hr /><a href='/datacollection/search?ross=" + feature.properties['SL ID'] + "&page=1&pageSize=10' class='btn btn-default btn-block btn-info'>View Data</a>");
+                    out.push("<img src='../images/slimage/" + feature.properties['SL ID'] + ".jpg' title='" + feature.properties['Name'] + ', ' + feature.properties['River'] + "' style='width: 70%;' class='img-responsive img-rounded img-thumbnail' /><hr /><a href='/datacollection/search?ross=" + feature.properties['SL ID'] + "&page=1&pageSize=10' class='btn btn-default btn-block btn-info'>View Data</a>");
                 }
 
                 layer.bindPopup(out.join("<br />"));
@@ -646,7 +646,7 @@
                 }
 
                 if (feature.properties['SL ID'] != '') {
-                    out.push("<img src='/Content/images/slimage/" + feature.properties['SL ID'] + ".jpg' title='" + feature.properties['Name'] + ', ' + feature.properties['River'] + "' style='width: 70%;' class='img-responsive img-rounded img-thumbnail' /><hr /><a href='/datacollection/search?ross=" + feature.properties['SL ID'] + "&page=1&pageSize=10' class='btn btn-default btn-block btn-info'>View Data</a>");
+                    out.push("<img src='../images/slimage/" + feature.properties['SL ID'] + ".jpg' title='" + feature.properties['Name'] + ', ' + feature.properties['River'] + "' style='width: 70%;' class='img-responsive img-rounded img-thumbnail' /><hr /><a href='/datacollection/search?ross=" + feature.properties['SL ID'] + "&page=1&pageSize=10' class='btn btn-default btn-block btn-info'>View Data</a>");
                 }
 
                 layer.bindPopup(out.join("<br />"));
@@ -919,9 +919,9 @@
 
         function getRiverColor(d) {
             switch (d) {
-                case 'River': return '#73DFFF';
-                case 'Char': return '#E69800';
-                default: '#FD127B';
+            case 'River': return '#73DFFF';
+            case 'Char': return '#E69800';
+            default: '#FD127B';
             }
         }
 
@@ -941,10 +941,10 @@
 
         function getHotSpotColor(d) {
             switch (d) {
-                case 'Low': return '#FFBEBE';
-                case 'Moderate': return '#FF7F7F';
-                case 'Severe': return '#FF0000';
-                default: '#FFFFFF';
+            case 'Low': return '#FFBEBE';
+            case 'Moderate': return '#FF7F7F';
+            case 'Severe': return '#FF0000';
+            default: '#FFFFFF';
             }
         }
 
@@ -1141,14 +1141,14 @@
             iconSize: [12, 19],
             iconAnchor: [13, 27],
             popupAnchor: [1, -24],
-            iconUrl: '/Content/images/green-10x17.png'
+            iconUrl: '../images/green-10x17.png'
         });
 
         var smallIconForOld = new L.Icon({
             iconSize: [12, 19],
             iconAnchor: [13, 27],
             popupAnchor: [1, -24],
-            iconUrl: '/Content/images/red-10x17.png'
+            iconUrl: '../images/red-10x17.png'
         });
 
         //var btn = L.functionButtons([{ content: 'Chittagong' }, { content: 'Reset Map' }]);

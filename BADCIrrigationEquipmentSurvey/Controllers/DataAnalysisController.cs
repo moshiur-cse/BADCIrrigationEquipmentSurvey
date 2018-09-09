@@ -88,7 +88,7 @@ namespace BADCIrrigationEquipmentSurvey.Controllers
                     PDBCountGroupByBADC = k.Where(i => i.AgencyInfo.NameOfAgency == "BADC" && i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "PDB").Count(),
                     REBCountGroupByBADC = k.Where(i => i.AgencyInfo.NameOfAgency == "BADC" && i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "REB").Count(),
 
-                    PDBCountGroupByOthers = k.Where(i => i.AgencyInf`o.NameOfAgency != "BADC" && i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "PDB").Count(),
+                    PDBCountGroupByOthers = k.Where(i => i.AgencyInfo.NameOfAgency != "BADC" && i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "PDB").Count(),
                     REBCountGroupByOthers = k.Where(i => i.AgencyInfo.NameOfAgency != "BADC" && i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "REB").Count(),
 
                     FarmrsCountGroupByBADSAndDieselEngines = k.Where(i => i.AgencyInfo.NameOfAgency == "BADC" && i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.BenefitedFarmerMale),
