@@ -53,6 +53,9 @@ namespace BADCIrrigationEquipmentSurvey.Controllers
         }
         public ActionResult ByIrrigationEquipments()
         {
+
+
+            //Moshiur
             ViewBag.Items = _dbContext.DistrictInfoes.ToList();
 
 
@@ -340,14 +343,23 @@ namespace BADCIrrigationEquipmentSurvey.Controllers
 
             return View();
         }
-        public JsonResult _ByIrrigatedArea()
+        public JsonResult _ByIrrigatedArea(string adminName, string sessionName, string equipmentName, string condition)
         {
             ViewBag.Items = _dbContext.DistrictInfoes.ToList();
-            Expression<Func<SurveyInfo, string>> groupBy = model => model.UpazilaInfo.UpazCode;
 
-            Expression<Func<SurveyInfo, string>> adminName = i => i.UpazilaInfo.UpazName;
+            Expression<Func<SurveyInfo, string>> groupBy = model => model.UpazilaInfo.UpazCode;
+            ViewBag.Admin = "Upazila";
+
 
             ViewBag.Admin = "Upazila";
+            if (adminName == "District")
+            {
+                groupBy = model => model.DistrictInfo.DistName;
+
+                ViewBag.Admin = "District";
+            }
+
+            
 
             //ViewBag.query = _dbContext.LowLiftPumpSurveyInfoes.Where(where).
             var query = _dbContext.SurveyInfoes.
@@ -355,6 +367,8 @@ namespace BADCIrrigationEquipmentSurvey.Controllers
                 {
                     UpazCode = k.Key,
                     UpazName = k.Select(i => i.UpazilaInfo.UpazName).First(),
+                    DistName = k.Select(i => i.DistrictInfo.DistName).First(),
+
                     item = k.GroupBy(i => i.AgencyInfo.NameOfAgency).Select(L => new
                     {
                         NameOfAgency = L.Key,

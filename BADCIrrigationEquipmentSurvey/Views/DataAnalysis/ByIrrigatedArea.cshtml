@@ -316,10 +316,19 @@
         $("#ReportView").on("click",
             function (e) {
 
+                var adminName = $("#adminName").val();
+                var equipmentName = $("#equipment").val();
+                var sessionName = $("#session").val();
+
+                //var sessionName = "a";
+                //var equipmentName = "b";
+                var condition = "c";
+
 
                 $.ajax({
                     type: 'Get',
-                    url: "../DataAnalysis/_ByIrrigatedArea",
+                    //url: "../DataAnalysis/_ByIrrigatedArea",
+                    url: "../DataAnalysis/_ByIrrigatedArea?adminName=" + adminName + "&sessionName=" + sessionName + "&equipmentName=" + equipmentName + "&condition=" + condition,
 
                     cache: false,
                     contentType: false,
@@ -336,13 +345,21 @@
                             //console.log(val.item.length);
                             //console.log(val.item);
 
-
                             if (val.item.length < 1)
                                 return;
 
                             var pdbTC = 0, rebTC = 0;
-                            tds = "<td rowspan='" + (val.item.length + 1) + "'>" + (rc + 1) + "</td>" +
-                                "<td rowspan='" + (val.item.length + 1) + "'>" + val.upazName + "</td>";
+
+                            
+                            if (adminName=== "District") {
+                                tds = "<td rowspan='" + (val.item.length + 1) + "'>" + (rc + 1) + "</td>" +
+                                    "<td rowspan='" + (val.item.length + 1) + "'>" + val.distName + "</td>";
+
+                            } else {
+
+                                tds ="<td rowspan='" + (val.item.length + 1) + "'>" + (rc + 1) + "</td>" +
+                                    "<td rowspan='" + (val.item.length + 1) + "'>" + val.upazName + "</td>";
+                            }
 
 
                             //val.item.forEach(function (data) {
