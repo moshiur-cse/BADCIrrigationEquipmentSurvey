@@ -31,7 +31,7 @@ namespace BADCIrrigationEquipmentSurvey.Controllers
             switch (condition)
             {
                 case "OR":
-                     
+
                     //the initial case starts off with a left epxression as null. If that's the case,
                     //then give the short-circuit operator something to trigger on for the right expression
                     if (left == null)
@@ -73,7 +73,7 @@ namespace BADCIrrigationEquipmentSurvey.Controllers
             //var parameter = Expression.Parameter(typeof(SurveyInfo), "x");
             //var member = Expression.Property(parameter, "DistCode"); //x.Id
             //var groupBy = Expression.Lambda<Func<SurveyInfo, string>>(member, parameter);
-            Expression < Func<SurveyInfo, string>> groupBy = model => model.UpazilaInfo.UpazName;
+            Expression<Func<SurveyInfo, string>> groupBy = model => model.UpazilaInfo.UpazName;
 
             ViewBag.Admin = "Upazila";
 
@@ -107,7 +107,7 @@ namespace BADCIrrigationEquipmentSurvey.Controllers
                     UnitCountGroupByOthersAndDieselEngines = k.Where(i => i.AgencyInfo.NameOfAgency != "BADC" && i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Count()
 
                 }).ToList();
-           
+
 
 
             List<ReportViewModel> aList = new List<ReportViewModel>();
@@ -151,7 +151,7 @@ namespace BADCIrrigationEquipmentSurvey.Controllers
 
         public ActionResult _ByIrrigationEquipmentsPartialView(string adminName, string sessionName, string equipmentName, string condition)
         {
-           
+
 
             //Expression<Func<SurveyInfo, Boolean>> where = null;
 
@@ -187,12 +187,12 @@ namespace BADCIrrigationEquipmentSurvey.Controllers
                 ViewBag.Admin = "District";
             }
 
-            
+
 
             if (sessionName == "Kkharif1" || sessionName == "Kkharif2" || equipmentName == "STW" ||
                 equipmentName == "DTW")
             {
-                ViewBag.query = _dbContext.SurveyInfoes.Where(i=>i.DistrictInfo.DistName == "ABC").
+                ViewBag.query = _dbContext.SurveyInfoes.Where(i => i.DistrictInfo.DistName == "ABC").
                 GroupBy(groupBy).Select(k => new {
 
                     UpazName = k.Key,
@@ -358,8 +358,14 @@ namespace BADCIrrigationEquipmentSurvey.Controllers
                     item = k.GroupBy(i => i.AgencyInfo.NameOfAgency).Select(L => new
                     {
                         NameOfAgency = L.Key,
-                        PDBCount = k.Where(i => i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "PDB").Count(),
-                        REBCount = k.Where(i => i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "REB").Count()
+                        PDBCount = L.Where(i => i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "PDB").Count(),
+                        REBCount = L.Where(i => i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "REB").Count(),
+                        FCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.BenefitedFarmerMale),
+                        FCountEE = L.Where(i => i.ElectricMotorMakeAndModel != "" && i.ElectricMotorKw != null).Sum(i => i.BenefitedFarmerMale),
+                        AreaCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.BoroArea + i.WheatArea + i.PotatoArea + i.MaizeArea + i.VegWinterArea + i.MustardArea + i.OthersArea),
+                        AreaCountEE = L.Where(i => i.ElectricMotorMakeAndModel != "" && i.ElectricMotorKw != null).Sum(i => i.BoroArea + i.WheatArea + i.PotatoArea + i.MaizeArea + i.VegWinterArea + i.MustardArea + i.OthersArea),
+                        UnitCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Count()
+
                     }).ToList()
                 }).ToList();
 
@@ -379,7 +385,7 @@ namespace BADCIrrigationEquipmentSurvey.Controllers
             return View();
         }
 
-        
+
 
 
     }

@@ -269,14 +269,14 @@
                         <th>PDB</th>
                         <th>REB</th>
                         <th>Total</th>
-                        @*<th>Area</th>
-                            <th>Farmers</th>
-                            <th>Unit</th>
-                            <th>Area</th>
-                            <th>Farmers</th>
-                            <th>Unit</th>
-                            <th>Area</th>
-                            <th>Farmers</th>*@
+                        <th>Area</th>
+                        <th>Farmers</th>
+                        <th>Unit</th>
+                        <th>Area</th>
+                        <th>Farmers</th>
+                        <th>Unit</th>
+                        <th>Area</th>
+                        <th>Farmers</th>
                     </tr>
                     <tr>
                         <th class="columnNo">1</th>
@@ -285,14 +285,14 @@
                         <th class="columnNo">4</th>
                         <th class="columnNo">5</th>
                         <th class="columnNo">6</th>
-                        @*<th class="columnNo">7</th>
-                            <th class="columnNo">8</th>
-                            <th class="columnNo">9</th>
-                            <th class="columnNo">10</th>
-                            <th class="columnNo">11</th>
-                            <th class="columnNo">12</th>
-                            <th class="columnNo">13</th>
-                            <th class="columnNo">14</th>*@
+                        <th class="columnNo">7</th>
+                        <th class="columnNo">8</th>
+                        <th class="columnNo">9</th>
+                        <th class="columnNo">10</th>
+                        <th class="columnNo">11</th>
+                        <th class="columnNo">12</th>
+                        <th class="columnNo">13</th>
+                        <th class="columnNo">14</th>
 
 
                     </tr>
@@ -326,14 +326,15 @@
                     processData: false,
 
                     success: function (data) {
+                        console.log(data);
 
                         $("#tbody").empty();
                         var tds;
                         var grandPdbTC = 0, grandRebTC = 0, grandRebTTC = 0;
                         $.each(data, function (rc, val) {
 
-                            console.log(val.item.length);
-                            console.log(val.item);
+                            //console.log(val.item.length);
+                            //console.log(val.item);
 
 
                             if (val.item.length < 1)
@@ -358,9 +359,16 @@
                                 tds += "<td>" + data.nameOfAgency + "</td> " +
                                     "<td style='text-align:right;'>" + data.pdbCount + "</td> " +
                                     "<td style='text-align:right;'>" + data.rebCount + "</td>" +
-                                    "<td style='text-align:right;'>" + (data.pdbCount + data.rebCount) + "</td>";
+                                    "<td style='text-align:right;'>" + (data.pdbCount + data.rebCount) + "</td>" +
+                                    "<td style='text-align:right;'>" + data.areaCountEE + "</td>" +
+                                    "<td style='text-align:right;'>" + data.fCountEE + "</td>" +
+                                    "<td style='text-align:right;'>" + data.unitCountDE + "</td>" +
+                                    "<td style='text-align:right;'>" + data.areaCountDE + "</td>" +
+                                    "<td style='text-align:right;'>" + data.fCountDE + "</td>";
 
-                                console.log(tds);
+
+
+                                // console.log(tds);
 
                                 $("#tbody").append("<tr>" + tds + "</tr>");
 
@@ -401,22 +409,22 @@
 
             });
 
-                //$.ajax({
-                //    type: "POST",
-                //    url: "/Demo?handler=Send",
-                //    contentType: "application/json; charset=utf-8",
-                //    dataType: "html",
-                //    success: function (response) {
-                //        var dvItems = $("#dvPostItems");
-                //        dvItems.empty();
-                //        $.each(response, function (i, item) {
-                //            var $tr = $('<li>').append(item).appendTo(dvItems);
-                //        });
-                //    },
-                //    failure: function (response) {
-                //        alert(response);
-                //    }
-                //});
+                    //$.ajax({
+                    //    type: "POST",
+                    //    url: "/Demo?handler=Send",
+                    //    contentType: "application/json; charset=utf-8",
+                    //    dataType: "html",
+                    //    success: function (response) {
+                    //        var dvItems = $("#dvPostItems");
+                    //        dvItems.empty();
+                    //        $.each(response, function (i, item) {
+                    //            var $tr = $('<li>').append(item).appendTo(dvItems);
+                    //        });
+                    //    },
+                    //    failure: function (response) {
+                    //        alert(response);
+                    //    }
+                    //});
 
     </script>
 }
