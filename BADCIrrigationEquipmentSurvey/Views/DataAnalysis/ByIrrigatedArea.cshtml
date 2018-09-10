@@ -203,8 +203,11 @@
         <div class="col-md-4">
             <label>Admin Boundary : </label>
             <select id="adminName" name="adminName" class="selectpicker">
-                <option value="District" selected="selected">District</option>
+
                 <option value="Upazila" selected="selected">Upazila</option>
+                <option value="District">District</option>
+                <option value="Division">Division</option>
+                <option value="National">National</option>
             </select>
 
         </div>
@@ -215,17 +218,17 @@
                 <option value="LLP" selected="selected">LLP</option>
                 <option value="STW">STW</option>
                 <option value="DTW">DTW</option>
-                <option value="DTW">Traditional</option>
+                @*<option value="DTW">Traditional</option>
                 <option value="DTW">Gravity Flow</option>
-                <option value="DTW">Artesian Well</option>
+                <option value="DTW">Artesian Well</option>*@
             </select>
         </div>
         <div class="col-md-4">
             <label>By Session : </label>
             <select id="session" class="selectpicker">
                 <option value="Robi" selected="selected">Robi</option>
-                <option value="Kkharif-1">Kkharif-1</option>
-                <option value="Kkharif-2">Kkharif-2</option>
+                <option value="kh1">Kkharif-1</option>
+                <option value="kh2">Kkharif-2</option>
 
             </select>
 
@@ -255,8 +258,8 @@
                 <thead>
                     <tr>
                         <th rowspan="3">SL No</th>
-                        <th rowspan="3">@ViewBag.Admin</th>
-                        <th colspan="12">LOW LIFT PUMP OPERATED BY ELECTRICITY AND DIESEL</th>
+                        <th rowspan="3" id="adName"></th>
+                        <th colspan="12" id="pumpName">OPERATED BY ELECTRICITY AND DIESEL</th>
                     </tr>
                     <tr>
                         <th rowspan="2">Organization</th>
@@ -319,69 +322,77 @@
                 var adminName = $("#adminName").val();
                 var equipmentName = $("#equipment").val();
                 var sessionName = $("#session").val();
+                var condition = "AND";
 
-                //var sessionName = "a";
-                //var equipmentName = "b";
-                var condition = "c";
+                $("#adName").empty();
+                $("#adName").append("<p>" + adminName + "</p>");
 
 
                 $.ajax({
                     type: 'Get',
                     //url: "../DataAnalysis/_ByIrrigatedArea",
                     url: "../DataAnalysis/_ByIrrigatedArea?adminName=" + adminName + "&sessionName=" + sessionName + "&equipmentName=" + equipmentName + "&condition=" + condition,
-
+                   
                     cache: false,
                     contentType: false,
                     processData: false,
 
                     success: function (data) {
-                        console.log(data);
+
+                        var pdbTC = 0, rebTC = 0;
 
                         $("#tbody").empty();
                         var tds;
                         var grandPdbTC = 0, grandRebTC = 0, grandRebTTC = 0;
-                        $.each(data, function (rc, val) {
 
-                            //console.log(val.item.length);
-                            //console.log(val.item);
+                        if (adminName === "National") {
+                            $.each(data, function (rc, val) {
 
-                            if (val.item.length < 1)
-                                return;
-
-                            var pdbTC = 0, rebTC = 0;
-
-                            
-                            if (adminName=== "District") {
-                                tds = "<td rowspan='" + (val.item.length + 1) + "'>" + (rc + 1) + "</td>" +
-                                    "<td rowspan='" + (val.item.length + 1) + "'>" + val.distName + "</td>";
-
-                            } else {
-
-                                tds ="<td rowspan='" + (val.item.length + 1) + "'>" + (rc + 1) + "</td>" +
-                                    "<td rowspan='" + (val.item.length + 1) + "'>" + val.upazName + "</td>";
-                            }
-
-
-                            //val.item.forEach(function (data) {
-                            //    console.log(data);
-                            //});
-
-                            for (var dc = 0; dc < val.item.length; dc++) {
-
-                                data = val.item[dc];
+                                data = val;
 
                                 pdbTC += data.pdbCount;
                                 rebTC += data.rebCount;
+
+                                tds = "<td rowspan='" + (data.length + 1) + "'>" + (rc + 1) + "</td>" +
+                                    "<td rowspan='" + (data.length + 1) + "'></td>";
+
+
+
+                                if (sessionName === "kh1") {
+                                    tds += "<td>" + data.nameOfAgency + "</td> " +
+                                        "<td style='text-align:right;'>" + data.pdbCount + "</td> " +
+                                        "<td style='text-align:right;'>" + data.rebCount + "</td>" +
+                                        "<td style='text-align:right;'>" + (data.pdbCount + data.rebCount) + "</td>" +
+                                        "<td style='text-align:right;'>" + data.kh1AreaCountEE + "</td>" +
+                                        "<td style='text-align:right;'>" + data.kh1FCountEE + "</td>" +
+                                        "<td style='text-align:right;'>" + data.kh1UnitCountDE + "</td>" +
+                                        "<td style='text-align:right;'>" + data.kh1AreaCountDE + "</td>" +
+                                        "<td style='text-align:right;'>" + data.kh1FCountDE + "</td>";
+
+                                } else if (sessionName === "kh2") {
+                                    tds += "<td>" + data.nameOfAgency + "</td> " +
+                                        "<td style='text-align:right;'>" + data.pdbCount + "</td> " +
+                                        "<td style='text-align:right;'>" + data.rebCount + "</td>" +
+                                        "<td style='text-align:right;'>" + (data.pdbCount + data.rebCount) + "</td>" +
+                                        "<td style='text-align:right;'>" + data.kh2AreaCountEE + "</td>" +
+                                        "<td style='text-align:right;'>" + data.kh2FCountEE + "</td>" +
+                                        "<td style='text-align:right;'>" + data.kh2UnitCountDE + "</td>" +
+                                        "<td style='text-align:right;'>" + data.kh2AreaCountDE + "</td>" +
+                                        "<td style='text-align:right;'>" + data.kh2FCountDE + "</td>";
+
+                                } else { 
+
 
                                 tds += "<td>" + data.nameOfAgency + "</td> " +
                                     "<td style='text-align:right;'>" + data.pdbCount + "</td> " +
                                     "<td style='text-align:right;'>" + data.rebCount + "</td>" +
                                     "<td style='text-align:right;'>" + (data.pdbCount + data.rebCount) + "</td>" +
-                                    "<td style='text-align:right;'>" + data.areaCountEE + "</td>" +
-                                    "<td style='text-align:right;'>" + data.fCountEE + "</td>" +
-                                    "<td style='text-align:right;'>" + data.unitCountDE + "</td>" +
-                                    "<td style='text-align:right;'>" + data.areaCountDE + "</td>" +
-                                    "<td style='text-align:right;'>" + data.fCountDE + "</td>";
+                                    "<td style='text-align:right;'>" + data.rAreaCountEE + "</td>" +
+                                    "<td style='text-align:right;'>" + data.rfCountEE + "</td>" +
+                                    "<td style='text-align:right;'>" + data.rUnitCountDE + "</td>" +
+                                    "<td style='text-align:right;'>" + data.rAreaCountDE + "</td>" +
+                                    "<td style='text-align:right;'>" + data.rfCountDE + "</td>";
+                            }
 
 
 
@@ -389,31 +400,115 @@
 
                                 $("#tbody").append("<tr>" + tds + "</tr>");
 
+
+
+                            });
+
+
+                        } else {
+                            $.each(data, function (rc, val) {
+ 
+                                if (val.item.length < 1)
+                                    return;
+
+                                console.log(data);
+
+                                if (adminName === "District") {
+                                    tds = "<td rowspan='" + (val.item.length + 1) + "'>" + (rc + 1) + "</td>" +
+                                        "<td rowspan='" + (val.item.length + 1) + "'>" + val.distName + "</td>";
+
+
+                                }
+                                else if (adminName === "Division") {
+                                    tds = "<td rowspan='" + (val.item.length + 1) + "'>" + (rc + 1) + "</td>" +
+                                        "<td rowspan='" + (val.item.length + 1) + "'>" + val.divName + "</td>";
+
+                                }
+
+                                else if (adminName === "National") {
+
+                                    tds = "<td rowspan='" + (val.item.length + 1) + "'>" + (rc + 1) + "</td>" +
+                                        "<td rowspan='" + (val.item.length + 1) + "'></td>";
+                                }
+                                else {
+
+                                    tds = "<td rowspan='" + (val.item.length + 1) + "'>" + (rc + 1) + "</td>" +
+                                        "<td rowspan='" + (val.item.length + 1) + "'>" + val.upazName + "</td>";
+                                }
+
+
+
+                                //val.item.forEach(function (data) {
+                                //    console.log(data);
+                                //});
+
+                                for (var dc = 0; dc < val.item.length; dc++) {
+
+                                    data = val.item[dc];
+
+                                    pdbTC += data.pdbCount;
+                                    rebTC += data.rebCount;
+
+
+                                    if (sessionName === "kh1") {
+                                        tds += "<td>" + data.nameOfAgency + "</td> " +
+                                            "<td style='text-align:right;'>" + data.pdbCount + "</td> " +
+                                            "<td style='text-align:right;'>" + data.rebCount + "</td>" +
+                                            "<td style='text-align:right;'>" + (data.pdbCount + data.rebCount) + "</td>" +
+                                            "<td style='text-align:right;'>" + data.kh1AreaCountEE + "</td>" +
+                                            "<td style='text-align:right;'>" + data.kh1FCountEE + "</td>" +
+                                            "<td style='text-align:right;'>" + data.kh1UnitCountDE + "</td>" +
+                                            "<td style='text-align:right;'>" + data.kh1AreaCountDE + "</td>" +
+                                            "<td style='text-align:right;'>" + data.kh1FCountDE + "</td>";
+
+                                    } else if (sessionName === "kh2") {
+                                        tds += "<td>" + data.nameOfAgency + "</td> " +
+                                            "<td style='text-align:right;'>" + data.pdbCount + "</td> " +
+                                            "<td style='text-align:right;'>" + data.rebCount + "</td>" +
+                                            "<td style='text-align:right;'>" + (data.pdbCount + data.rebCount) + "</td>" +
+                                            "<td style='text-align:right;'>" + data.kh2AreaCountEE + "</td>" +
+                                            "<td style='text-align:right;'>" + data.kh2FCountEE + "</td>" +
+                                            "<td style='text-align:right;'>" + data.kh2UnitCountDE + "</td>" +
+                                            "<td style='text-align:right;'>" + data.kh2AreaCountDE + "</td>" +
+                                            "<td style='text-align:right;'>" + data.kh2FCountDE + "</td>";
+
+                                    } else {
+
+                                        tds += "<td>" + data.nameOfAgency + "</td> " +
+                                            "<td style='text-align:right;'>" + data.pdbCount + "</td> " +
+                                            "<td style='text-align:right;'>" + data.rebCount + "</td>" +
+                                            "<td style='text-align:right;'>" + (data.pdbCount + data.rebCount) + "</td>" +
+                                            "<td style='text-align:right;'>" + data.rAreaCountEE + "</td>" +
+                                            "<td style='text-align:right;'>" + data.rfCountEE + "</td>" +
+                                            "<td style='text-align:right;'>" + data.rUnitCountDE + "</td>" +
+                                            "<td style='text-align:right;'>" + data.rAreaCountDE + "</td>" +
+                                            "<td style='text-align:right;'>" + data.rfCountDE + "</td>";
+
+                                    }
+
+                                    // console.log(tds);
+
+                                    $("#tbody").append("<tr>" + tds + "</tr>");
+
+                                    tds = "";
+                                }
+
+                                grandPdbTC += pdbTC;
+                                grandRebTC += rebTC;
+                                grandRebTTC += (pdbTC + rebTC);
+                                tds += "<td>Total</td> <td style='text-align:right;'>" + pdbTC + "</td> <td style='text-align:right;'>" + rebTC + "</td><td style='text-align:right;'>" + (pdbTC + rebTC) + "</td>";
+                                $("#tbody").append("<tr>" + tds + "</tr>");
                                 tds = "";
-                            }
+                                pdbTC = 0;
+                                rebTC = 0;
 
-                            grandPdbTC += pdbTC;
-                            grandRebTC += rebTC;
-                            grandRebTTC += (pdbTC + rebTC);
+                            });
 
+                            tds += "<td></td><td></td><td>Grand Total</td> <td style='text-align:right;'>" + grandPdbTC + "</td> <td style='text-align:right;'>" + grandRebTC + "</td><td>" + grandRebTTC + "</td>";
 
-                            //if (val.item.length == dc + 1) {
-                            tds += "<td>Total</td> <td style='text-align:right;'>" + pdbTC + "</td> <td style='text-align:right;'>" + rebTC + "</td><td style='text-align:right;'>" + (pdbTC + rebTC) + "</td>";
-                            //trs += "<tr>" + tds + "</tr>";
-                            //$("#tbody").append("<tr>" + tds + "</tr>");
                             $("#tbody").append("<tr>" + tds + "</tr>");
-                            tds = "";
-                            pdbTC = 0;
-                            rebTC = 0;
-
-
-                            //}
-
-                        });
-                        tds += "<td></td><td></td><td>Grand Total</td> <td style='text-align:right;'>" + grandPdbTC + "</td> <td style='text-align:right;'>" + grandRebTC + "</td><td>" + grandRebTTC + "</td>";
-
-                        $("#tbody").append("<tr>" + tds + "</tr>");
-
+                        }
+                        
                     },
                     complete: function () {
                         $("#busy-indicator").hide();

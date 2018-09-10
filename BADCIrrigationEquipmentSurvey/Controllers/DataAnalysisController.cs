@@ -345,45 +345,152 @@ namespace BADCIrrigationEquipmentSurvey.Controllers
         }
         public JsonResult _ByIrrigatedArea(string adminName, string sessionName, string equipmentName, string condition)
         {
+            
             ViewBag.Items = _dbContext.DistrictInfoes.ToList();
 
             Expression<Func<SurveyInfo, string>> groupBy = model => model.UpazilaInfo.UpazCode;
-            ViewBag.Admin = "Upazila";
 
-
-            ViewBag.Admin = "Upazila";
             if (adminName == "District")
             {
-                groupBy = model => model.DistrictInfo.DistName;
-
-                ViewBag.Admin = "District";
+                groupBy = model => model.UpazilaInfo.DistCode;
             }
+            else if (adminName == "Division")
+            {
+                groupBy = model => model.UpazilaInfo.DistrictInfo.DivisionInfo.DivCode;
+            }
+            //else if (adminName == "National")
+            //{
+            //    groupBy = model => string.IsNullOrEmpty(false);
+            //}
 
-            
+
+            Expression<Func<SurveyInfo, Boolean>> where = null;
+
+            //if (sessionName == "Kkharif - 1" || sessionName == "Kkharif - 2")
+            //{
+            //    var parameter1 = Expression.Parameter(typeof(SurveyInfo), "x");
+            //    var member1 = Expression.Property(parameter1, "AgencyCode"); //x.Id
+            //    var constant = Expression.Convert(Expression.Constant(4), member1.Type);
+            //    Expression body = Expression.GreaterThanOrEqual(member1, constant);
+            //    var exp = Expression.Lambda<Func<SurveyInfo, bool>>(body, parameter1); //x => x.Id >= 3
+            //    where = AppendExpression(where, exp, "AND");
+            //}
+            if (equipmentName == "STW")
+            {
+                var parameter1 = Expression.Parameter(typeof(SurveyInfo), "x");
+                var member1 = Expression.Property(parameter1, "EquipmentId"); //x.Id
+                var constant = Expression.Convert(Expression.Constant(2), member1.Type);
+                var body = Expression.Equal(member1, constant); //x.Id >= 3
+                var exp = Expression.Lambda<Func<SurveyInfo, bool>>(body, parameter1); //x => x.Id >= 3
+                where = AppendExpression(where, exp, "AND");
+
+            }else if (equipmentName == "DTW")
+            {
+                var parameter1 = Expression.Parameter(typeof(SurveyInfo), "x");
+                var member1 = Expression.Property(parameter1, "EquipmentId"); //x.Id
+                var constant = Expression.Convert(Expression.Constant(4), member1.Type);
+                var body = Expression.Equal(member1, constant); //x.Id >= 3
+                var exp = Expression.Lambda<Func<SurveyInfo, bool>>(body, parameter1); //x => x.Id >= 3
+                where = AppendExpression(where, exp, "AND");
+
+            }
+            else
+            {
+                var parameter1 = Expression.Parameter(typeof(SurveyInfo), "x");
+                var member1 = Expression.Property(parameter1, "EquipmentId"); //x.Id
+                var constant = Expression.Convert(Expression.Constant(1), member1.Type);
+                var body = Expression.Equal(member1, constant); //x.Id >= 3
+                var exp = Expression.Lambda<Func<SurveyInfo, bool>>(body, parameter1); //x => x.Id >= 3
+                where = AppendExpression(where, exp, "AND");
+
+            }
+            //LLP
+
+
 
             //ViewBag.query = _dbContext.LowLiftPumpSurveyInfoes.Where(where).
-            var query = _dbContext.SurveyInfoes.
+
+            if (adminName == "National")
+            {
+                var query = _dbContext.SurveyInfoes.Where(where).GroupBy(i => i.AgencyInfo.NameOfAgency).Select(L => new
+                {
+                    NameOfAgency = L.Key,
+                    PDBCount = L.Where(i => i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "PDB").Count(),
+                    REBCount = L.Where(i => i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "REB").Count(),
+
+                    RAreaCountEE = L.Where(i => i.ElectricMotorMakeAndModel != "" && i.ElectricMotorKw != null).Sum(i => i.BoroArea + i.WheatArea + i.PotatoArea + i.MaizeArea + i.VegWinterArea + i.MustardArea + i.OthersArea),
+                    RFCountEE = L.Where(i => i.ElectricMotorMakeAndModel != "" && i.ElectricMotorKw != null).Sum(i => i.BenefitedFarmerMale + i.BenefitedAgricultureLabourFemale),
+
+                    RUnitCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Count(),
+                    RAreaCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.BoroArea + i.WheatArea + i.PotatoArea + i.MaizeArea + i.VegWinterArea + i.MustardArea + i.OthersArea),
+                    RFCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.BenefitedFarmerMale + i.BenefitedAgricultureLabourFemale),
+
+
+                    Kh1AreaCountEE = L.Where(i => i.ElectricMotorMakeAndModel != "" && i.ElectricMotorKw != null).Sum(i => i.AusAreaKh1 + i.JuteAreaKh1 + i.VegAreaKh1 + i.OthersAreaKh1),
+                    Kh1FCountEE = L.Where(i => i.ElectricMotorMakeAndModel != "" && i.ElectricMotorKw != null).Sum(i => i.BenefitedFarmerMaleKh1 + i.BenefitedAgricultureLabourFemaleKh1),
+
+                    Kh1UnitCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Count(),
+                    Kh1AreaCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.AusAreaKh1 + i.JuteAreaKh1 + i.VegAreaKh1 + i.OthersAreaKh1),
+                    Kh1FCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.BenefitedFarmerMaleKh1 + i.BenefitedAgricultureLabourFemaleKh1),
+
+                    Kh2AreaCountEE = L.Where(i => i.ElectricMotorMakeAndModel != "" && i.ElectricMotorKw != null).Sum(i => i.TAmanAreaKh2 + i.OthersAreaKh2),
+                    Kh2FCountEE = L.Where(i => i.ElectricMotorMakeAndModel != "" && i.ElectricMotorKw != null).Sum(i => i.BenefitedFarmerMaleKh2 + i.BenefitedAgricultureLabourFemaleKh2),
+
+                    Kh2UnitCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Count(),
+                    Kh2AreaCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.TAmanAreaKh2 + i.OthersAreaKh2),
+                    Kh2FCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.BenefitedFarmerMaleKh2 + i.BenefitedAgricultureLabourFemaleKh2)
+
+                }).ToList();
+                return Json(query);
+
+
+            }
+            else
+            {
+                var query = _dbContext.SurveyInfoes.Where(where).
                 GroupBy(groupBy).Select(k => new
                 {
-                    UpazCode = k.Key,
-                    UpazName = k.Select(i => i.UpazilaInfo.UpazName).First(),
-                    DistName = k.Select(i => i.DistrictInfo.DistName).First(),
+                    upazCode = k.Key,
+                    upazName = k.Select(i => i.UpazilaInfo.UpazName).First(),
+                    distName = k.Select(i => i.UpazilaInfo.DistrictInfo.DistName).First(),
+                    divName = k.Select(i => i.UpazilaInfo.DistrictInfo.DivisionInfo.DivName).First(),
 
                     item = k.GroupBy(i => i.AgencyInfo.NameOfAgency).Select(L => new
                     {
                         NameOfAgency = L.Key,
                         PDBCount = L.Where(i => i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "PDB").Count(),
                         REBCount = L.Where(i => i.ElectricMotorPowerSourceInfo.ElectricMotorSourceOfPower == "REB").Count(),
-                        FCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.BenefitedFarmerMale),
-                        FCountEE = L.Where(i => i.ElectricMotorMakeAndModel != "" && i.ElectricMotorKw != null).Sum(i => i.BenefitedFarmerMale),
-                        AreaCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.BoroArea + i.WheatArea + i.PotatoArea + i.MaizeArea + i.VegWinterArea + i.MustardArea + i.OthersArea),
-                        AreaCountEE = L.Where(i => i.ElectricMotorMakeAndModel != "" && i.ElectricMotorKw != null).Sum(i => i.BoroArea + i.WheatArea + i.PotatoArea + i.MaizeArea + i.VegWinterArea + i.MustardArea + i.OthersArea),
-                        UnitCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Count()
+
+                        RAreaCountEE = L.Where(i => i.ElectricMotorMakeAndModel != "" && i.ElectricMotorKw != null).Sum(i => i.BoroArea + i.WheatArea + i.PotatoArea + i.MaizeArea + i.VegWinterArea + i.MustardArea + i.OthersArea),
+                        RFCountEE = L.Where(i => i.ElectricMotorMakeAndModel != "" && i.ElectricMotorKw != null).Sum(i => i.BenefitedFarmerMale + i.BenefitedAgricultureLabourFemale),
+
+                        RUnitCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Count(),
+                        RAreaCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.BoroArea + i.WheatArea + i.PotatoArea + i.MaizeArea + i.VegWinterArea + i.MustardArea + i.OthersArea),
+                        RFCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.BenefitedFarmerMale + i.BenefitedAgricultureLabourFemale),
+
+
+                        Kh1AreaCountEE = L.Where(i => i.ElectricMotorMakeAndModel != "" && i.ElectricMotorKw != null).Sum(i => i.AusAreaKh1 + i.JuteAreaKh1 + i.VegAreaKh1 + i.OthersAreaKh1),
+                        Kh1FCountEE = L.Where(i => i.ElectricMotorMakeAndModel != "" && i.ElectricMotorKw != null).Sum(i => i.BenefitedFarmerMaleKh1 + i.BenefitedAgricultureLabourFemaleKh1),
+
+                        Kh1UnitCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Count(),
+                        Kh1AreaCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.AusAreaKh1 + i.JuteAreaKh1 + i.VegAreaKh1 + i.OthersAreaKh1),
+                        Kh1FCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.BenefitedFarmerMaleKh1 + i.BenefitedAgricultureLabourFemaleKh1),
+
+                        Kh2AreaCountEE = L.Where(i => i.ElectricMotorMakeAndModel != "" && i.ElectricMotorKw != null).Sum(i => i.TAmanAreaKh2 + i.OthersAreaKh2),
+                        Kh2FCountEE = L.Where(i => i.ElectricMotorMakeAndModel != "" && i.ElectricMotorKw != null).Sum(i => i.BenefitedFarmerMaleKh2 + i.BenefitedAgricultureLabourFemaleKh2),
+
+                        Kh2UnitCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Count(),
+                        Kh2AreaCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.TAmanAreaKh2 + i.OthersAreaKh2),
+                        Kh2FCountDE = L.Where(i => i.DieselEngineMakeAndModel != "" && i.DieselEngineHp != null).Sum(i => i.BenefitedFarmerMaleKh2 + i.BenefitedAgricultureLabourFemaleKh2)
 
                     }).ToList()
                 }).ToList();
 
-            return Json(query);
+
+                return Json(query);
+            }
+
+            //return Json(query);
         }
         public ActionResult ByIrrigatedCost()
         {
